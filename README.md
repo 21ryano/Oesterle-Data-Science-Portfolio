@@ -9,3 +9,6 @@
     - [Visualizations](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Visualizations)
     - [Models](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models)
     - [Miscellaneous](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Miscellaneous)
+
+- For now, I will leave my first app (a streamlit designed basketball statistics page) here, before moving into the visualizations folder, soon.
+-    
