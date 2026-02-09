@@ -87,9 +87,11 @@ if section == "🏀 Basketball Statistics Home":
 elif section == "🌎 Player Demographics":
     st.header("🌎 Player Demographics")
 
+    # Total Players by Team
     st.write("### Total Players by Team")
     st.bar_chart(df_filtered['team_abbreviation'].value_counts())
 
+    # Players by Age
     st.write("### Players by Age")
     age_counts = df_filtered['age'].value_counts().sort_index()
     chart = age_counts.plot.bar(figsize=(10, 6))
@@ -99,6 +101,7 @@ elif section == "🌎 Player Demographics":
     st.pyplot(chart.get_figure())
     chart.get_figure().clf()
 
+    # Players by Region
     st.write("### Players by Region")
     europe_countries = {
         'France', 'Spain', 'Italy', 'Germany', 'Russia', 'Greece', 'Croatia',
@@ -120,6 +123,7 @@ elif section == "🌎 Player Demographics":
     st.pyplot(chart.get_figure())
     chart.get_figure().clf()
 
+    # Players per Draft Year (excluding undrafted)
     st.write("### Players per Draft Year (excluding undrafted)")
     df_drafted_only = df_filtered[
         df_filtered['draft_year'].notna()
@@ -127,6 +131,7 @@ elif section == "🌎 Player Demographics":
         & (df_filtered['draft_year'] != "Undrafted")
     ]
 
+    # Drafted vs Undrafted Players Pie Chart
     st.write("### Drafted vs Undrafted Players")
     chart = pd.Series(
         [df_drafted_only.shape[0], df_filtered.shape[0] - df_drafted_only.shape[0]],
@@ -207,6 +212,7 @@ elif section == "📈 Distribution of Stats/Game":
 elif section == "📊 Statistics by Season":
     st.header("📊 Statistics by Season")
 
+    # Average Points per Game per Season
     st.write("### Average Points per Game per Season")
     avg_pts = df_filtered.groupby('season')['pts'].mean()
     sns_plot = sns.lineplot(x=avg_pts.index, y=avg_pts.values, marker='o')
@@ -216,6 +222,7 @@ elif section == "📊 Statistics by Season":
     st.pyplot(sns_plot.get_figure())
     sns_plot.get_figure().clf()
 
+    # Average Assists per Game per Season
     st.write("### Average Assists per Game per Season")
     avg_ast = df_filtered.groupby('season')['ast'].mean()
     sns_plot = sns.lineplot(x=avg_ast.index, y=avg_ast.values, marker='o')
@@ -225,6 +232,7 @@ elif section == "📊 Statistics by Season":
     st.pyplot(sns_plot.get_figure())
     sns_plot.get_figure().clf()
 
+    # Average Rebounds per Game per Season
     st.write("### Average Rebounds per Game per Season")
     avg_reb = df_filtered.groupby('season')['reb'].mean()
     sns_plot = sns.lineplot(x=avg_reb.index, y=avg_reb.values, marker='o')
@@ -234,6 +242,7 @@ elif section == "📊 Statistics by Season":
     st.pyplot(sns_plot.get_figure())
     sns_plot.get_figure().clf()
 
+    # Average Games Played Per Season
     st.write("### Average Games Played Per Season")
     avg_gp = df_filtered.groupby('season')['gp'].mean()
     sns_plot = sns.lineplot(x=avg_gp.index, y=avg_gp.values, marker='o')
@@ -248,6 +257,7 @@ elif section == "📊 Statistics by Season":
 elif section == "💪 Performance Comparisons":
     st.header("💪 Performance Comparisons")
 
+    # Age vs Points Scatterplot
     st.write("### Age vs Points")
     sns_plot = sns.scatterplot(data=df_filtered, x='age', y='pts', alpha=0.7)
     sns_plot.set_xlabel(label_map['age'])
@@ -255,6 +265,7 @@ elif section == "💪 Performance Comparisons":
     st.pyplot(sns_plot.get_figure())
     sns_plot.get_figure().clf()
 
+    # Height vs Rebounds Scatterplot
     st.write("### Height vs Rebounds")
     sns_plot = sns.scatterplot(data=df_filtered, x='player_height', y='reb', alpha=0.7)
     sns_plot.set_xlabel(label_map['player_height'])
@@ -262,6 +273,7 @@ elif section == "💪 Performance Comparisons":
     st.pyplot(sns_plot.get_figure())
     sns_plot.get_figure().clf()
 
+    # Usage vs Rating Scatterplot
     st.write("### Usage vs Rating")
     sns_plot = sns.scatterplot(data=df_filtered, x='usg_pct', y='net_rating', alpha=0.7)
     sns_plot.set_xlabel(label_map['usg_pct'])
