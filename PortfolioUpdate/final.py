@@ -1,5 +1,5 @@
 # INSTRUCTIONS ON HOW TO RUN THIS APP
-# First, in "Command Prompt" on the Terminal, type "cd PortfolioUpdate1"
+# First, in "Command Prompt" on the Terminal, type "cd PortfolioUpdate"
 # Second, still in "Command prompt", type "streamlit run final.py"
 
 
