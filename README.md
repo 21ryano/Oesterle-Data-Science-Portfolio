@@ -13,7 +13,9 @@
 
 - **Here is my most recent project!** Its an EDA of a dataset of 2008 Beijing Olympics medal winners.
   (https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/TidyData-Project)
-
+    - 
+    - 
+    - 
 
 
 - NOTE: My second most recent project (a streamlit basketball statistics app) has since been moved to my EDA Folder. Check it out [HERE](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Basic_Streamlit_App).
