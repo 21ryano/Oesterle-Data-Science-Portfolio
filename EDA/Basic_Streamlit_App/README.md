@@ -10,4 +10,4 @@
 
 
 
-Within the "Data" folder, you can find the kaggle dataset, ["all_seasons.csv"](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/Basic_Streamlit_App/Data/all_seasons.csv).
+Within the "Data" folder, you can find the kaggle dataset, ["all_seasons.csv"](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/EDA/Basic_Streamlit_App/Data/all_seasons.csv).
