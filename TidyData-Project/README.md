@@ -68,5 +68,5 @@ https://rstudio.com/resources/cheatsheets/
 
 
 📈 **Visual Examples**
-![alt text](<Screenshot 2026-03-19 101020-1.png>)
+![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/TidyData-Project/Screenshots/Screenshot%202026-03-19%20101020.png)
 ![alt text](<Screenshot 2026-03-19 101050.png>)
