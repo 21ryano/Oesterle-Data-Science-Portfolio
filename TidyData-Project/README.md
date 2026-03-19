@@ -61,8 +61,10 @@ A tidy dataset with the following columns:
 
 
 📚 *References*
+
 📄 Hadley Wickham, Tidy Data Paper (2014):
 https://vita.had.co.nz/papers/tidy-data.pdf
+
 🧾 Tidy Data Cheat Sheet (RStudio):
 https://rstudio.com/resources/cheatsheets/
 
