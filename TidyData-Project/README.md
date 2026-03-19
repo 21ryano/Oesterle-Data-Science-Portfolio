@@ -29,3 +29,6 @@
 ***Importance***
 - Applying tidy data principles makes datasets easier to analyze, visualize, and interpret, allowing for more effective data-driven insights.
 
+
+![alt text](<Screenshot 2026-03-19 101020-1.png>)
+![alt text](<Screenshot 2026-03-19 101050.png>)
