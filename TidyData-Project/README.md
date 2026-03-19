@@ -21,9 +21,7 @@ Applying these principles makes data easier to manipulate, visualize, and model.
 
 
 *⚙️ Instructions (How to Run the Project)*
-1. Clone the Repository
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+1. Copy the Repository
 2. Install Pandas, MatPlotLib, and Seaborn. This is intended for a Jupyter Notebook.
 3. Run the Notebook
 
