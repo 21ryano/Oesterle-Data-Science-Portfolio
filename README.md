@@ -11,12 +11,6 @@
     - [Miscellaneous](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Miscellaneous)
 
 
-- [**HERE IS MY MOST RECENT PROJECT!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/TidyData-Project/PortfolioUpdate2.ipynb) It's an EDA of a dataset of 2008 Beijing Olympics medal winners.
-   - This project is primarily an exercise of ***Tidying Data***
-   - This exercise applies tidy data principles to clean and restructure the dataset into a more usable format for analysis. It involves transforming the data, dropping missing values, and organizing variables to improve clarity and keep everything consistent. Doing this allowed a visual EDA to then be conducted.
-   - **How This Strengthens My Portfolio**: This demonstrates my ability to work with raw data and prepare it for analysis. It highlights skills in data cleaning, transformation, and basic exploratory analysis, which are essential for real-world data science and programming tasks.
-
-
-- **NOTE**: My second most recent project (a streamlit basketball statistics app) has since been moved to my EDA Folder. Check it out [HERE](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
-
-
+- **NOTE**: I have two previous projects that I think you should also take a look at!
+   - First, a streamlit basketball statistics app that can tell you statistics about any player since 1991! Check it out [HERE!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
+   - Second, an EDA of a very untidy (but now super tidy) 2008 Olympics dataset. Check that out [Here]!
