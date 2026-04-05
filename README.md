@@ -12,5 +12,5 @@
 
 
 - **NOTE**: I have two previous projects that I think you should also take a look at!
-   - First, a streamlit basketball statistics app that can tell you statistics about any player since 1991! Check it out [HERE!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
-   - Second, an EDA of a very untidy (but now super tidy) 2008 Olympics dataset. Check that out [Here]!
+   - First, a streamlit basketball statistics app that can tell you statistics about any player since 1996! Check it out [HERE!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
+   - Second, an EDA of a very untidy (but now super tidy) 2008 Olympics dataset. Check that out [Here!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
