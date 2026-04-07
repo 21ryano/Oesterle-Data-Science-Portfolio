@@ -16,6 +16,6 @@
 [**Here**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLStreamlitApp) **is my most recent project!** It's a *Machine Learning Streamlit App* where you can upload datasets, train classification or regression models, and visualize results with metrics and plots. It supports Logistic Regression, Decision Trees, KNN, and Linear Regression. Check it out!
 
 
-- **NOTE**: I have two previous projects that I think you should also take a look at!
-   - First, a streamlit basketball statistics app that can tell you statistics about any player since 1996! Check it out [HERE!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
-   - Second, an EDA of a very untidy (but now super tidy) 2008 Olympics dataset. Check that out [Here!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
+**NOTE**: I have two previous projects that I think you should also take a look at!
+- First, a streamlit basketball statistics app that can tell you statistics about any player since 1996! Check it out [HERE!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
+- Second, an EDA of a very untidy (but now super tidy) 2008 Olympics dataset. Check that out [Here!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
