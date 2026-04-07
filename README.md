@@ -15,7 +15,7 @@
 
 [**Here**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLStreamlitApp) **is my most recent project!** It's a *Machine Learning Streamlit App* where you can upload datasets, train classification or regression models, and visualize results with metrics and plots. It supports Logistic Regression, Decision Trees, KNN, and Linear Regression. 
 
-This is my first ***Machine Learning Modeling*** application and only my second ***Streamlit App***
+This is my first ***Machine Learning Modeling*** application and only my second ***Streamlit App***1
 
 
 **NOTE**: I have two previous projects that I think you should also take a look at!
