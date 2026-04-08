@@ -155,35 +155,33 @@ uploaded_file = st.sidebar.file_uploader("Upload CSV File", type=["csv"])
 # Sample dataset option
 sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from Here", "Titanic", "Iris", "Wine", "Breast Cancer", "Tips", "Penguins", "Diabetes"])
 
-# Load Sample Datasets
+# --- Dataset Selection: Upload CSV or Sample ---
 df = None
-if uploaded_file is not None:
+
+# Upload CSV
+if uploaded_file:
     try:
-        # Read CSV without specifying errors first
         df = pd.read_csv(uploaded_file, encoding='utf-8')
-    except UnicodeDecodeError:
-        # Try Windows encoding
-        uploaded_file.seek(0)  # reset pointer to start
+    except:
+        uploaded_file.seek(0)  # reset file pointer
         df = pd.read_csv(uploaded_file, encoding='cp1252')
     st.success(f"Dataset uploaded successfully! Shape: {df.shape}")
+
+# Sample datasets
 elif sample_data == "Titanic":
     df = sns.load_dataset("titanic")
 elif sample_data == "Iris":
-    data = datasets.load_iris()
-    df = pd.DataFrame(data.data, columns=data.feature_names)
-    df["target"] = data.target
+    iris = datasets.load_iris(as_frame=True)
+    df = iris.frame
 elif sample_data == "Wine":
-    data = datasets.load_wine()
-    df = pd.DataFrame(data.data, columns=data.feature_names)
-    df["target"] = data.target
+    wine = datasets.load_wine(as_frame=True)
+    df = wine.frame
 elif sample_data == "Breast Cancer":
-    data = datasets.load_breast_cancer()
-    df = pd.DataFrame(data.data, columns=data.feature_names)
-    df["target"] = data.target
+    bc = datasets.load_breast_cancer(as_frame=True)
+    df = bc.frame
 elif sample_data == "Diabetes":
-    data = datasets.load_diabetes()
-    df = pd.DataFrame(data.data, columns=data.feature_names)
-    df["target"] = data.target
+    diabetes = datasets.load_diabetes(as_frame=True)
+    df = diabetes.frame
 elif sample_data == "Tips":
     df = sns.load_dataset("tips")
 elif sample_data == "Penguins":
