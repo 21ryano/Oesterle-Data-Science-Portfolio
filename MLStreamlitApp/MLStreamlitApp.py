@@ -513,7 +513,7 @@ if df is not None and target and features and target not in features:
             r2 = r2_score(y_test, y_pred)
             st.write(f"Mean Squared Error (MSE): {mse:.2f}")
             st.write(f"R² Score: {r2:.2f}")
-            st.info("R² closer to 1 means the model explains the data well.")
+            st.info("Reminder: The closer the R² is to 1, the better the model explains the data well.")
 
             # Actual vs Predicted Plot
             fig3, ax3 = plt.subplots()
