@@ -158,7 +158,11 @@ sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from H
 # Load Sample Datasets
 df = None
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    try:
+        df = pd.read_csv(uploaded_file, encoding='utf-8', errors='replace')
+    except UnicodeDecodeError:
+        df = pd.read_csv(uploaded_file, encoding='cp1252', errors='replace')
+    st.success(f"Dataset uploaded successfully! Shape: {df.shape}")
 elif sample_data == "Titanic":
     df = sns.load_dataset("titanic")
 elif sample_data == "Iris":
