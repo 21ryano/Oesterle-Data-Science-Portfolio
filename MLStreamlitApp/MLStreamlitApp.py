@@ -158,19 +158,16 @@ sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from H
 # --- Dataset Selection: Upload CSV or Sample ---
 df = None
 
-
-
-# Upload CSV or choose a sample dataset
-df = None
-
+# Upload CSV
 if uploaded_file:
     try:
-        df = pd.read_csv(uploaded_file, encoding='utf-8', low_memory=False)
-    except Exception:
-        uploaded_file.seek(0)
-        df = pd.read_csv(uploaded_file, encoding='cp1252', low_memory=False)
-    st.success(f"CSV uploaded successfully! Shape: {df.shape}")
+        df = pd.read_csv(uploaded_file, encoding='utf-8')
+    except:
+        uploaded_file.seek(0)  # reset file pointer
+        df = pd.read_csv(uploaded_file, encoding='cp1252')
+    st.success(f"Dataset uploaded successfully! Shape: {df.shape}")
 
+# Sample datasets
 elif sample_data == "Titanic":
     df = sns.load_dataset("titanic")
 elif sample_data == "Iris":
@@ -189,22 +186,6 @@ elif sample_data == "Tips":
     df = sns.load_dataset("tips")
 elif sample_data == "Penguins":
     df = sns.load_dataset("penguins")
-
-# Clean the dataset after upload or selection
-if df is not None:
-    # Drop rows with missing values
-    df = df.dropna()
-    
-    # Convert categorical columns to dummies
-    df = pd.get_dummies(df, drop_first=True)
-    
-    # Clean string/object columns
-    for col in df.select_dtypes(include=['object']).columns:
-        df[col] = df[col].astype(str).str.strip().str.replace("-", "_").str.replace(" ", "_")
-    
-    st.write("Dataset ready! Shape after cleaning:", df.shape)
-
-
 
 # Data Preview/Cleaning
 if df is not None:
