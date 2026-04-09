@@ -540,9 +540,9 @@ if df is not None and target and features and target not in features:
             # Actual vs Predicted Plot
             fig3, ax3 = plt.subplots()
             ax3.scatter(y_test, y_pred, alpha=0.7)
-            ax3.set_xlabel("Actual Values")
-            ax3.set_ylabel("Predicted Values")
-            ax3.set_title("Actual vs Predicted")
+            ax3.set_xlabel(f"Actual {target}")
+            ax3.set_ylabel(f"Predicted {target}")
+            ax3.set_title(f"Actual vs Predicted Values of {target}")
             st.pyplot(fig3)
 
             # Residual Plot
