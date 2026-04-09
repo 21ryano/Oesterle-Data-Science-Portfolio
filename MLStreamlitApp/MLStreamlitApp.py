@@ -501,22 +501,7 @@ if df is not None and target and features and target not in features:
             ax.set_ylabel("Actual")
             st.pyplot(fig)
 
-            # Classification Report
-            st.subheader("Classification Report")
-            st.text(classification_report(y_test, y_pred))
-
-            # ROC Curve (binary only)
-            if len(np.unique(y_test)) == 2:
-                y_probs = model.predict_proba(X_test)[:, 1]
-                fpr, tpr, _ = roc_curve(y_test, y_probs)
-                roc_auc = roc_auc_score(y_test, y_probs)
-                fig2, ax2 = plt.subplots()
-                ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
-                ax2.plot([0, 1], [0, 1], linestyle="--")
-                ax2.legend()
-                st.pyplot(fig2)
-            else:
-                st.write("ROC curve is only for binary classification.")
+    
 
         else:
             # Regression Metrics
