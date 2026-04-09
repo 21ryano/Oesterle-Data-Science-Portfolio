@@ -405,6 +405,18 @@ if df is not None and target and features and target not in features:
             main_model = LogisticRegression(C=C, max_iter=1000)
             main_model.fit(X_train, y_train)
             y_pred = main_model.predict(X_test)
+            show_probs = st.checkbox("Show Probabilities (Sigmoid Output)")
+            if show_probs:
+                y_probs = main_model.predict_proba(X_test)[:, 1]
+                
+                st.subheader("Sigmoid Probability Output")
+                st.write(y_probs)
+                
+                # Optional visualization
+                fig_prob, ax_prob = plt.subplots()
+                ax_prob.hist(y_probs, bins=20)
+                ax_prob.set_title("Distribution of Predicted Probabilities")
+                st.pyplot(fig_prob)
 
             # Decision Tree Boundary Plot
             if X_train.shape[1] >= 2:
