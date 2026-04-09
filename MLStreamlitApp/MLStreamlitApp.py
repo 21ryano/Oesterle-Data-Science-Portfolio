@@ -260,8 +260,8 @@ if df is not None:
 # Train-Test Split: Split the dataset into training and testing sets to evaluate performance
 if target and features and target not in features:
 
-    X = df[features]
-    y = df[target]
+    X = df[st.session_state.features]
+    y = df[st.session_state.target]
     is_classification = is_classification_target(y)
     if is_classification:
         st.success("Detected Classification Problem")
