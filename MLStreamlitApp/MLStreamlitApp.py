@@ -32,9 +32,11 @@ from pandas.api.types import is_numeric_dtype
 
 
 # Identify whether data is discrete or continuous
-def is_classification_target(y, threshold=15):
+def is_classification_target(y, threshold=50):
     """
     Determines if target should be treated as classification.
+    Numeric targets with up to `threshold` unique values are treated as categorical.
+    Non-numeric targets are automatically treated as classification.
     """
     if not is_numeric_dtype(y):
         return True
