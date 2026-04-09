@@ -242,11 +242,6 @@ if df is not None:
         default=st.session_state.features if st.session_state.features else df.columns.tolist()[:5]
     )
     
-    # Select target variable
-    target = st.selectbox("Select Target Variable", columns)
-
-    # Select feature variables
-    features = st.multiselect("Select Feature Variables", columns, default=columns[:5])
     if not st.session_state.features:
         st.warning("Please select at least one feature to proceed.")
 
