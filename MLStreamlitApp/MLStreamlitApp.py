@@ -453,32 +453,32 @@ if df is not None and target and features and target not in features:
         st.pyplot(fig)
 
 
-            # Metrics with main model
-            st.subheader("Model Performance")
-            accuracy = accuracy_score(y_test, y_pred)
-            st.write(f"Accuracy: {accuracy:.2f}")
+        # Metrics with main model
+        st.subheader("Model Performance")
+        accuracy = accuracy_score(y_test, y_pred)
+        st.write(f"Accuracy: {accuracy:.2f}")
 
-            cm = confusion_matrix(y_test, y_pred)
-            fig, ax = plt.subplots()
-            sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
-            ax.set_xlabel("Predicted")
-            ax.set_ylabel("Actual")
-            st.pyplot(fig)
+        cm = confusion_matrix(y_test, y_pred)
+        fig, ax = plt.subplots()
+        sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
+        ax.set_xlabel("Predicted")
+        ax.set_ylabel("Actual")
+        st.pyplot(fig)
 
-            st.subheader("Classification Report")
-            st.text(classification_report(y_test, y_pred))
+        st.subheader("Classification Report")
+        st.text(classification_report(y_test, y_pred))
 
-            if len(np.unique(y_test)) == 2:
-                y_probs = model.predict_proba(X_test)[:, 1]
-                fpr, tpr, _ = roc_curve(y_test, y_probs)
-                roc_auc = roc_auc_score(y_test, y_probs)
-                fig2, ax2 = plt.subplots()
-                ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
-                ax2.plot([0, 1], [0, 1], linestyle="--")
-                ax2.legend()
-                st.pyplot(fig2)
-            else:
-                st.write("ROC curve is only for binary classification.")
+        if len(np.unique(y_test)) == 2:
+            y_probs = model.predict_proba(X_test)[:, 1]
+            fpr, tpr, _ = roc_curve(y_test, y_probs)
+            roc_auc = roc_auc_score(y_test, y_probs)
+            fig2, ax2 = plt.subplots()
+            ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
+            ax2.plot([0, 1], [0, 1], linestyle="--")
+            ax2.legend()
+            st.pyplot(fig2)
+        else:
+            st.write("ROC curve is only for binary classification.")
 
 
         # Show Decision Tree Visualization
