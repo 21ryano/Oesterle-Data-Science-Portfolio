@@ -246,9 +246,9 @@ if df is not None:
         st.warning("Please select at least one feature to proceed.")
 
     # Prevent user from selecting target as a feature
-    if target in features:
-        features.remove(target)
-        st.warning(f"Target variable '{target}' was removed from features.")
+    if st.session_state.target in st.session_state.features:
+        st.session_state.features.remove(st.session_state.target)
+        st.warning(f"Target variable '{st.session_state.target}' was removed from features.")
 
 
 
