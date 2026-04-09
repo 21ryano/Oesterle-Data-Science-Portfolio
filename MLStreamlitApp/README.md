@@ -5,11 +5,12 @@ This is an interactive Streamlit app that lets users conduct supervised machine 
 **How To Use**
 - Click the Link [**HERE**](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/) to deploy the App.
      - Link URL: [https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/)
-  - If running the app locally:
-      - *Copy the Repository*: **git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git**
-      - *Navigate to the App Folder*: **cd MLStreamlitApp**
-      - *Install Required Libraries*: **pip install pandas matplotlib seaborn scikit-learn streamlit** (also located in the [requirements.txt](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLStreamlitApp/requirements.txt))
-      - *Run the App*: **streamlit run app.py**
+ 
+- If running the app locally:
+   - *Copy the Repository*: **git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git**
+   - *Navigate to the App Folder*: **cd MLStreamlitApp**
+   - *Install Required Libraries*: **pip install pandas matplotlib seaborn scikit-learn streamlit** (also located in the [requirements.txt](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLStreamlitApp/requirements.txt))
+   - *Run the App*: **streamlit run app.py**
 
 **APP FEATURES**
 - Use a ***Sample Dataset*** or ***Upload your own***!
@@ -20,14 +21,10 @@ This is an interactive Streamlit app that lets users conduct supervised machine 
 
 
 **References**
-📄 Hadley Wickham, Tidy Data Paper (2014):
-https://vita.had.co.nz/papers/tidy-data.pdf
-
-🧾 Tidy Data Cheat Sheet (RStudio):
-https://rstudio.com/resources/cheatsheets/
+- 📄[Sci-Kit Learn](https://scikit-learn.org/stable/supervised_learning.html#): Information regarding Machine Learning models and hyperparameters. 
+- 📄[Streamlit Guide for building an App](https://docs.streamlit.io/)
 
 
-
-📈 **Visual Examples**
+**Visual Examples**
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLStreamlitApp/Screenshots/Screenshot%202026-04-06%20224239.png)
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLStreamlitApp/Screenshots/Screenshot%202026-04-06%20224653.png)
