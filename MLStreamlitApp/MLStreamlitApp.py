@@ -449,9 +449,7 @@ if df is not None and target and features and target not in features:
                 # Ensure X_train is a DataFrame for easy column access
                 X_train_df = pd.DataFrame(X_train, columns=features) if scale else X_train.copy()
                 X_test_df = pd.DataFrame(X_test, columns=features) if scale else X_test.copy()
-            
-                # Let user pick feature for visualization
-                feature_name = st.selectbox("Select Feature for Sigmoid Curve", features)
+        
             
                 # Create baseline: mean of all features
                 baseline = X_train_df.mean().values
