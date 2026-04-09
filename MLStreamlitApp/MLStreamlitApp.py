@@ -442,15 +442,15 @@ if df is not None and target and features and target not in features:
         # Predict probabilities
         y_probs = model.predict_proba(X_plot)[:, 1]
             
-                # Plot
-                fig, ax = plt.subplots()
-                ax.plot(x_range, y_probs, color="red", label=f"P({model.classes_[1]})")
-                ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
-                ax.set_xlabel(feature_name)
-                ax.set_ylabel(f"Predicted Probability of {target}")
-                ax.set_title(f"Effect of {feature_name} on Probability of {target}")
-                ax.legend()
-                st.pyplot(fig)
+        # Plot
+        fig, ax = plt.subplots()
+        ax.plot(x_range, y_probs, color="red", label=f"P({model.classes_[1]})")
+        ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
+        ax.set_xlabel(feature_name)
+        ax.set_ylabel(f"Predicted Probability of {target}")
+        ax.set_title(f"Effect of {feature_name} on Probability of {target}")
+        ax.legend()
+        st.pyplot(fig)
 
 
             # Metrics with main model
