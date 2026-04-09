@@ -453,7 +453,7 @@ if df is not None and target and features and target not in features:
 
             # Updated labels
             ax.set_xlabel(feature_name)  # Feature on X-axis
-            ax.set_ylabel(f"Predicted Probability of {"target}")  # Show target name
+            ax.set_ylabel(f"Predicted Probability of {"target"})  # Show target name
             ax.set_title(f"Effect of {feature_name} on Probability of {positive_class} ({target})")
 
             ax.legend()
