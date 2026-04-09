@@ -155,7 +155,7 @@ st.sidebar.title("Dataset Options")
 uploaded_file = st.sidebar.file_uploader("Upload CSV File (Numerical Only)", type=["csv"])
 
 # Sample dataset option
-sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from Here", "Titanic", "Iris", "Wine", "Breast Cancer", "Tips", "Penguins", "Diabetes"])
+sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from Here", "Titanic", "Wine", "Breast Cancer", "Iris", "Tips", "Penguins", "Diabetes"])
 
 # --- Dataset Selection: Upload CSV or Sample ---
 df = None
@@ -172,15 +172,15 @@ if uploaded_file:
 # Sample datasets
 elif sample_data == "Titanic":
     df = sns.load_dataset("titanic")
-elif sample_data == "Iris":
-    iris = datasets.load_iris(as_frame=True)
-    df = iris.frame
 elif sample_data == "Wine":
     wine = datasets.load_wine(as_frame=True)
     df = wine.frame
 elif sample_data == "Breast Cancer":
     bc = datasets.load_breast_cancer(as_frame=True)
     df = bc.frame
+elif sample_data == "Iris":
+    iris = datasets.load_iris(as_frame=True)
+    df = iris.frame
 elif sample_data == "Diabetes":
     diabetes = datasets.load_diabetes(as_frame=True)
     df = diabetes.frame
