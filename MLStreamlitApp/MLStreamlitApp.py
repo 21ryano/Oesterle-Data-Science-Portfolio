@@ -30,6 +30,8 @@ from sklearn.tree import plot_tree
 
 from pandas.api.types import is_numeric_dtype
 
+if "trained" not in st.session_state:
+    st.session_state.trained = False
 
 # Identify whether data is discrete or continuous
 def is_classification_target(y, threshold=15):
