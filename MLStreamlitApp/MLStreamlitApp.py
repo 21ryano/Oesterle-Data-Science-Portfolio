@@ -294,28 +294,36 @@ if target and features and target not in features:
             st.warning(f"Target '{target}' is continuous. Switching to Regression instead.")
             is_classification = False
 
+    # Decide if target is classification or regression
     if is_classification:
         st.subheader("Choose a Classification Model")
-        model_name = st.selectbox(
-            "Select Classification Model",
-            ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
-        )
-
-        st.subheader("Hyperparameter Tuning")
-        if model_name == "Logistic Regression":
-            C = st.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
-            model = LogisticRegression(C=C, max_iter=1000)
-        elif model_name == "Decision Tree":
-            max_depth = st.slider("Max Depth", 1, 10, 4)
-            model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
-        elif model_name == "K-Nearest Neighbors":
-            k = st.slider("Number of Neighbors (k)", 1, 15, 5)
-            model = KNeighborsClassifier(n_neighbors=k)
-
-        if not is_classification and model_name in ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]:
-            st.warning("Target is continuous; switching to Linear Regression automatically.")
+    
+        # If the target is numeric but too many unique values, switch to regression automatically
+        if not is_classification_target(y):
+            st.warning("Target appears continuous; switching to Regression automatically.")
+            is_classification = False
             model_name = "Linear Regression"
             model = LinearRegression()
+        else:
+            model_name = st.selectbox(
+                "Select Classification Model",
+                ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
+            )
+    
+            st.subheader("Hyperparameter Tuning")
+            if model_name == "Logistic Regression":
+                C = st.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
+                model = LogisticRegression(C=C, max_iter=1000)
+            elif model_name == "Decision Tree":
+                max_depth = st.slider("Max Depth", 1, 10, 4)
+                model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
+            elif model_name == "K-Nearest Neighbors":
+                k = st.slider("Number of Neighbors (k)", 1, 15, 5)
+                model = KNeighborsClassifier(n_neighbors=k)
+    else:
+        st.subheader("Choose a Regression Model")
+        model_name = st.selectbox("Select Regression Model", ["Linear Regression"])
+        model = LinearRegression()
 
     else:  # Regression
         st.subheader("Choose a Regression Model")
