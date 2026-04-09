@@ -285,8 +285,8 @@ if target and features and target not in features:
         
         # Then show the selectbox without a label (or a short one)
         model_name = st.selectbox(
-            "Select between a Logistic Regression, Decision Tree, and K-Nearest Neighbor model",
-            ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
+            "Select between a Decision Tree, Logistic Regression, and K-Nearest Neighbor model",
+            ["Decision Tree", "Logistic Regression", "K-Nearest Neighbors"]
         )
 
     else:
