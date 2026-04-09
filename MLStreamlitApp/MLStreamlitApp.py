@@ -30,11 +30,8 @@ from sklearn.tree import plot_tree
 
 from pandas.api.types import is_numeric_dtype
 
-if "target" not in st.session_state:
-    st.session_state.target = None
-
-if "features" not in st.session_state:
-    st.session_state.features = []
+if "trained" not in st.session_state:
+    st.session_state.trained = False
 
 # Identify whether data is discrete or continuous
 def is_classification_target(y, threshold=15):
@@ -229,34 +226,26 @@ if df is not None:
     # Display columns for feature selection
     columns = df.columns.tolist()
 
-    st.session_state.target = st.selectbox(
-        "Select Target Variable",
-        df.columns.tolist(),
-        index=df.columns.tolist().index(st.session_state.target)
-        if st.session_state.target in df.columns else 0
-    )
-    
-    st.session_state.features = st.multiselect(
-        "Select Feature Variables",
-        df.columns.tolist(),
-        default=st.session_state.features if st.session_state.features else df.columns.tolist()[:5]
-    )
-    
-    if not st.session_state.features:
+    # Select target variable
+    target = st.selectbox("Select Target Variable", columns)
+
+    # Select feature variables
+    features = st.multiselect("Select Feature Variables", columns, default=columns[:5])
+    if not features:
         st.warning("Please select at least one feature to proceed.")
 
     # Prevent user from selecting target as a feature
-    if st.session_state.target in st.session_state.features:
-        st.session_state.features.remove(st.session_state.target)
-        st.warning(f"Target variable '{st.session_state.target}' was removed from features.")
+    if target in features:
+        features.remove(target)
+        st.warning(f"Target variable '{target}' was removed from features.")
 
 
 
 # Train-Test Split: Split the dataset into training and testing sets to evaluate performance
 if target and features and target not in features:
 
-    X = df[st.session_state.features]
-    y = df[st.session_state.target]
+    X = df[features]
+    y = df[target]
     is_classification = is_classification_target(y)
     if is_classification:
         st.success("Detected Classification Problem")
