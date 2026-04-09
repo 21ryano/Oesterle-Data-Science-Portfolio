@@ -32,11 +32,9 @@ from pandas.api.types import is_numeric_dtype
 
 
 # Identify whether data is discrete or continuous
-def is_classification_target(y, threshold=50):
+def is_classification_target(y, threshold=15):
     """
     Determines if target should be treated as classification.
-    Numeric targets with up to `threshold` unique values are treated as categorical.
-    Non-numeric targets are automatically treated as classification.
     """
     if not is_numeric_dtype(y):
         return True
@@ -152,42 +150,39 @@ features = None
 st.sidebar.title("Dataset Options")
 
 # Upload CSV file
-uploaded_file = st.sidebar.file_uploader("Upload CSV File (Numerical Only)", type=["csv"])
+uploaded_file = st.sidebar.file_uploader("Upload CSV File", type=["csv"])
 
 # Sample dataset option
-sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from Here", "Titanic", "Wine", "Breast Cancer", "Iris", "Tips", "Penguins", "Diabetes"])
+sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from Here", "Titanic", "Iris", "Wine", "Breast Cancer", "Tips", "Penguins", "Diabetes"])
 
-# --- Dataset Selection: Upload CSV or Sample ---
+# Load Sample Datasets
 df = None
-
-# Upload CSV
-if uploaded_file:
-    try:
-        df = pd.read_csv(uploaded_file, encoding='utf-8')
-    except:
-        uploaded_file.seek(0)  # reset file pointer
-        df = pd.read_csv(uploaded_file, encoding='cp1252')
-    st.success(f"Dataset uploaded successfully! Shape: {df.shape}")
-
-# Sample datasets
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
 elif sample_data == "Titanic":
     df = sns.load_dataset("titanic")
-elif sample_data == "Wine":
-    wine = datasets.load_wine(as_frame=True)
-    df = wine.frame
-elif sample_data == "Breast Cancer":
-    bc = datasets.load_breast_cancer(as_frame=True)
-    df = bc.frame
 elif sample_data == "Iris":
-    iris = datasets.load_iris(as_frame=True)
-    df = iris.frame
+    data = datasets.load_iris()
+    df = pd.DataFrame(data.data, columns=data.feature_names)
+    df["target"] = data.target
+elif sample_data == "Wine":
+    data = datasets.load_wine()
+    df = pd.DataFrame(data.data, columns=data.feature_names)
+    df["target"] = data.target
+elif sample_data == "Breast Cancer":
+    data = datasets.load_breast_cancer()
+    df = pd.DataFrame(data.data, columns=data.feature_names)
+    df["target"] = data.target
 elif sample_data == "Diabetes":
-    diabetes = datasets.load_diabetes(as_frame=True)
-    df = diabetes.frame
+    data = datasets.load_diabetes()
+    df = pd.DataFrame(data.data, columns=data.feature_names)
+    df["target"] = data.target
 elif sample_data == "Tips":
     df = sns.load_dataset("tips")
 elif sample_data == "Penguins":
     df = sns.load_dataset("penguins")
+
+
 
 # Data Preview/Cleaning
 if df is not None:
@@ -200,7 +195,7 @@ if df is not None:
         "Missing Values": missing_counts.values,
         "Percent Missing": (missing_counts.values / df.shape[0] * 100).round(2)
     })
-
+    
     if missing_counts.sum() > 0:
         st.dataframe(missing_df)
     else:
@@ -255,8 +250,6 @@ if target and features and target not in features:
     else:
         st.warning("Detected Regression Problem (continuous target)")
 
-
-    
     # Display target variable distribution
     st.subheader("Target Variable Distribution")
     plt.figure(figsize=(8,5))
@@ -286,58 +279,37 @@ if target and features and target not in features:
 
 # Model Selection and Hyperparameter Tuning
 if target and features and target not in features:
-
-    # Ensure task type is compatible with target
     if is_classification:
-        # Confirm target is suitable for classification
-        if not is_classification_target(y):
-            st.warning(f"Target '{target}' is continuous. Switching to Regression instead.")
-            is_classification = False
-
-    # Decide if target is classification or regression
-    if is_classification:
+        # Make the label bold using st.subheader or st.markdown
         st.subheader("Choose a Classification Model")
-    
-        # If the target is numeric but too many unique values, switch to regression automatically
-        if not is_classification_target(y):
-            st.warning("Target appears continuous; switching to Regression automatically.")
-            is_classification = False
-            model_name = "Linear Regression"
-            model = LinearRegression()
-        else:
-            model_name = st.selectbox(
-                "Select Classification Model",
-                ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
-            )
-    
-            st.subheader("Hyperparameter Tuning")
-            if model_name == "Logistic Regression":
-                C = st.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
-                model = LogisticRegression(C=C, max_iter=1000)
-            elif model_name == "Decision Tree":
-                max_depth = st.slider("Max Depth", 1, 10, 4)
-                model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
-            elif model_name == "K-Nearest Neighbors":
-                k = st.slider("Number of Neighbors (k)", 1, 15, 5)
-                model = KNeighborsClassifier(n_neighbors=k)
-    else:
-        st.subheader("Choose a Regression Model")
-        model_name = st.selectbox("Select Regression Model", ["Linear Regression"])
-        model = LinearRegression()
-
-       # Regression
-        st.subheader("Choose a Regression Model")
+        
+        # Then show the selectbox without a label (or a short one)
         model_name = st.selectbox(
-            "Select Regression Model",
+            "Select between a Logistic Regression, Decision Tree, and K-Nearest Neighbor model",
+            ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
+        )
+
+    else:
+        model_name = st.selectbox(
+            "Regression Model:",
             ["Linear Regression"]
         )
+    if is_classification:
         st.subheader("Hyperparameter Tuning")
-        if model_name == "Linear Regression":
-            model = LinearRegression()
-
-    if not is_classification and model_name in ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]:
-        st.warning("Target is continuous; switching to Linear Regression automatically.")
+        if model_name == "Logistic Regression":
+            C = st.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
+            model = LogisticRegression(C=C, max_iter=1000)
+        elif model_name == "Decision Tree":
+            max_depth = st.slider("Max Depth", 1, 10, 4)
+            model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
+        elif model_name == "K-Nearest Neighbors":
+            k = st.slider("Number of Neighbors (k)", 1, 15, 5)
+            model = KNeighborsClassifier(n_neighbors=k)
+    else:
+        st.subheader("Linear Regression (Continuous Prediction)")
+        st.write("This model predicts continuous values using a linear relationship.")
         model = LinearRegression()
+
 
 
 # Model Training and Evaluation (automatic)
@@ -360,8 +332,9 @@ if df is not None and target and features and target not in features:
 
     if st.button("Train Model"):
 
+        # Train model
         model.fit(X_train, y_train)
-        
+
         # Make predictions
         y_pred = model.predict(X_test)
 
@@ -417,72 +390,73 @@ if df is not None and target and features and target not in features:
                 )
 
                 ax.set_title(f"KNN Decision Boundary (k={k})")
-                ax.set_xlabel(feat1)
-                ax.set_ylabel(feat2)
+                ax.set_xlabel("Feature 1")
+                ax.set_ylabel("Feature 2")
 
                 st.pyplot(fig)
             else:
                 st.warning("Need at least 2 features to plot KNN decision boundary.")
 
-        st.subheader("Logistic Regression Sigmoid Curve")
-        # Let user pick feature for sigmoid curve
-        feature_name = st.selectbox("Select Feature for Sigmoid Curve", features)
-        
-        # Ensure X_train_df is always a DataFrame with correct columns
-        X_train_df = pd.DataFrame(X_train, columns=features) if isinstance(X_train, np.ndarray) else X_train.copy()
-        
-        # Create baseline
-        baseline = X_train_df.mean().values
-        
-        # Range for selected feature
-        feature_index = features.index(feature_name)
-        feature_values = X_train_df[feature_name].values
-        x_range = np.linspace(feature_values.min(), feature_values.max(), 200)
-        
-        # Build X_plot
-        X_plot = np.tile(baseline, (len(x_range), 1))
-        X_plot[:, feature_index] = x_range
-        
-        # Predict probabilities
-        y_probs = model.predict_proba(X_plot)[:, 1]
-            
-        # Plot
-        fig, ax = plt.subplots()
-        ax.plot(x_range, y_probs, color="red", label=f"P({model.classes_[1]})")
-        ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
-        ax.set_xlabel(feature_name)
-        ax.set_ylabel(f"Predicted Probability of {target}")
-        ax.set_title(f"Effect of {feature_name} on Probability of {target}")
-        ax.legend()
-        st.pyplot(fig)
+        if is_classification and model_name == "Logistic Regression":
+            st.subheader("Logistic Regression Decision Boundary")
 
+            # Train main model on all features for predictions & metrics
+            main_model = LogisticRegression(C=C, max_iter=1000)
+            main_model.fit(X_train, y_train)
+            y_pred = main_model.predict(X_test)
 
-        # Metrics with main model
-        st.subheader("Model Performance")
-        accuracy = accuracy_score(y_test, y_pred)
-        st.write(f"Accuracy: {accuracy:.2f}")
+            # Decision Tree Boundary Plot
+            if X_train.shape[1] >= 2:
+                vis_model = LogisticRegression(C=C, max_iter=1000)
+                X_vis = X_train[:, :2] if scale else X_train.iloc[:, :2].values
+                y_vis = y_train.values
+                vis_model.fit(X_vis, y_vis)
 
-        cm = confusion_matrix(y_test, y_pred)
-        fig, ax = plt.subplots()
-        sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
-        ax.set_xlabel("Predicted")
-        ax.set_ylabel("Actual")
-        st.pyplot(fig)
+                # Create mesh grid
+                x_min, x_max = X_vis[:, 0].min() - 1, X_vis[:, 0].max() + 1
+                y_min, y_max = X_vis[:, 1].min() - 1, X_vis[:, 1].max() + 1
+                xx, yy = np.meshgrid(
+                    np.linspace(x_min, x_max, 100),
+                    np.linspace(y_min, y_max, 100)
+                )
+                grid = np.c_[xx.ravel(), yy.ravel()]
+                probs = vis_model.predict_proba(grid)[:, 1].reshape(xx.shape)
 
-        st.subheader("Classification Report")
-        st.text(classification_report(y_test, y_pred))
+                # Plot
+                fig, ax = plt.subplots()
+                ax.contourf(xx, yy, probs, alpha=0.3, cmap="coolwarm")
+                ax.scatter(X_vis[:, 0], X_vis[:, 1], c=y_vis, cmap="coolwarm", edgecolors="k")
+                ax.set_title("Decision Boundary (Logistic Regression)")
+                st.pyplot(fig)
+            else:
+                st.warning("Need at least 2 features to plot decision boundary.")
 
-        if len(np.unique(y_test)) == 2:
-            y_probs = model.predict_proba(X_test)[:, 1]
-            fpr, tpr, _ = roc_curve(y_test, y_probs)
-            roc_auc = roc_auc_score(y_test, y_probs)
-            fig2, ax2 = plt.subplots()
-            ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
-            ax2.plot([0, 1], [0, 1], linestyle="--")
-            ax2.legend()
-            st.pyplot(fig2)
-        else:
-            st.write("ROC curve is only for binary classification.")
+            # Metrics with main model
+            st.subheader("Model Performance")
+            accuracy = accuracy_score(y_test, y_pred)
+            st.write(f"Accuracy: {accuracy:.2f}")
+
+            cm = confusion_matrix(y_test, y_pred)
+            fig, ax = plt.subplots()
+            sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
+            ax.set_xlabel("Predicted")
+            ax.set_ylabel("Actual")
+            st.pyplot(fig)
+
+            st.subheader("Classification Report")
+            st.text(classification_report(y_test, y_pred))
+
+            if len(np.unique(y_test)) == 2:
+                y_probs = main_model.predict_proba(X_test)[:, 1]
+                fpr, tpr, _ = roc_curve(y_test, y_probs)
+                roc_auc = roc_auc_score(y_test, y_probs)
+                fig2, ax2 = plt.subplots()
+                ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
+                ax2.plot([0, 1], [0, 1], linestyle="--")
+                ax2.legend()
+                st.pyplot(fig2)
+            else:
+                st.write("ROC curve is only for binary classification.")
 
 
         # Show Decision Tree Visualization
@@ -539,21 +513,21 @@ if df is not None and target and features and target not in features:
             r2 = r2_score(y_test, y_pred)
             st.write(f"Mean Squared Error (MSE): {mse:.2f}")
             st.write(f"R² Score: {r2:.2f}")
-            st.info("Reminder: The closer the R² is to 1, the better the model explains the data well.")
+            st.info("R² closer to 1 means the model explains the data well.")
 
             # Actual vs Predicted Plot
             fig3, ax3 = plt.subplots()
             ax3.scatter(y_test, y_pred, alpha=0.7)
-            ax3.set_xlabel(f"Actual {target}")
-            ax3.set_ylabel(f"Predicted {target}")
-            ax3.set_title(f"Actual vs Predicted Values of {target}")
+            ax3.set_xlabel("Actual Values")
+            ax3.set_ylabel("Predicted Values")
+            ax3.set_title("Actual vs Predicted")
             st.pyplot(fig3)
 
             # Residual Plot
             residuals = y_test - y_pred
             fig4, ax4 = plt.subplots()
             sns.histplot(residuals, kde=True, ax=ax4)
-            ax4.set_title(f"Residuals for {target}")
+            ax4.set_title("Residual Distribution")
             st.pyplot(fig4)
 
 else:
