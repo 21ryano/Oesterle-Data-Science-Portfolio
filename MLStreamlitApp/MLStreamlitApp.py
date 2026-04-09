@@ -343,11 +343,19 @@ if df is not None and target and features and target not in features:
 
     if st.button("Train Model"):
 
-        # Train model
-        model.fit(X_train, y_train)
-
-        # Make predictions
-        y_pred = model.predict(X_test)
+        # Ensure Logistic Regression is only used for classification targets
+        is_classification = is_classification_target(y)  # your existing function
+        
+        if is_classification:
+            if y.nunique() <= 1:
+                st.error("Target variable must have more than 1 unique value for classification.")
+            else:
+                # Only then train Logistic Regression
+                model.fit(X_train, y_train)
+                y_pred = model.predict(X_test)
+        else:
+            st.error(f"Selected target '{target}' is continuous. Please use a classification target or switch to Regression.")
+            y_pred = None  # prevents downstream errors
 
         # Feature to select 2 Features for KNN Visualization
         if is_classification and model_name == "K-Nearest Neighbors":
