@@ -446,9 +446,9 @@ if df is not None and target and features and target not in features:
             ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
             
             # Updated labels
-            ax.set_xlabel(feature_name)
-            ax.set_ylabel(f"Probability of {positive_class}")
-            ax.set_title(f"Effect of {feature_name} on Probability of {positive_class}")
+            ax.set_xlabel(feature_name)  # Feature on X-axis
+            ax.set_ylabel(f"Predicted Probability of {positive_class} ({target})")  # Show target name
+            ax.set_title(f"Effect of {feature_name} on Probability of {positive_class} ({target})")
             
             ax.legend()
             st.pyplot(fig)
