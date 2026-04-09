@@ -484,6 +484,9 @@ if df is not None and target and features and target not in features:
                 fontsize=10
             )
             st.pyplot(fig)
+
+        if model_name != "Logistic Regression":
+            st.subheader("Model Performance")
         
         # Classification models (Decision Tree, KNN ONLY)
         if is_classification and model_name != "Logistic Regression":
