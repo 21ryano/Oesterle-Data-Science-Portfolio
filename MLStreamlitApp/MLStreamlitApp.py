@@ -150,7 +150,7 @@ features = None
 st.sidebar.title("Dataset Options")
 
 # Upload CSV file
-uploaded_file = st.sidebar.file_uploader("Upload CSV File", type=["csv"])
+uploaded_file = st.sidebar.file_uploader("Upload CSV File (Numerical Only)", type=["csv"])
 
 # Sample dataset option
 sample_data = st.sidebar.selectbox("Or choose a sample dataset", ["Select from Here", "Titanic", "Iris", "Wine", "Breast Cancer", "Tips", "Penguins", "Diabetes"])
