@@ -6,7 +6,10 @@ This is an interactive Streamlit app that lets users conduct supervised machine 
 - Click the Link [HERE](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/) to deploy the App.
      - Link URL: [https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/)
   - If running the app locally:
-      - 
+      - Copy the Repository: git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git
+      - Navigate to the App Folder: cd MLStreamlitApp
+      - Install Required Libraries: pip install pandas matplotlib seaborn scikit-learn streamlit (also located in the requirements.txt)
+      - Run the App: streamlit run app.py
 
 **APP FEATURES**
 - Use a ***Sample Dataset*** or ***Upload your own***!
