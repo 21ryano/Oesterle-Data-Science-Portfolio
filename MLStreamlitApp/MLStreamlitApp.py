@@ -30,14 +30,8 @@ from sklearn.tree import plot_tree
 
 from pandas.api.types import is_numeric_dtype
 
-if "model_trained" not in st.session_state:
-    st.session_state.model_trained = False
-
-if "model" not in st.session_state:
-    st.session_state.model = None
-
-if "y_pred" not in st.session_state:
-    st.session_state.y_pred = None
+if "trained" not in st.session_state:
+    st.session_state.trained = False
 
 # Identify whether data is discrete or continuous
 def is_classification_target(y, threshold=15):
@@ -191,8 +185,6 @@ elif sample_data == "Penguins":
     df = sns.load_dataset("penguins")
 
 
-y_pred = st.session_state.y_pred
-model = st.session_state.model
 
 # Data Preview/Cleaning
 if df is not None:
@@ -205,7 +197,7 @@ if df is not None:
         "Missing Values": missing_counts.values,
         "Percent Missing": (missing_counts.values / df.shape[0] * 100).round(2)
     })
-    
+
     if missing_counts.sum() > 0:
         st.dataframe(missing_df)
     else:
@@ -292,7 +284,7 @@ if target and features and target not in features:
     if is_classification:
         # Make the label bold using st.subheader or st.markdown
         st.subheader("Choose a Classification Model")
-        
+
         # Then show the selectbox without a label (or a short one)
         model_name = st.selectbox(
             "Select between a Decision Tree, Logistic Regression, and K-Nearest Neighbor model",
@@ -331,217 +323,227 @@ if df is not None and target and features and target not in features:
         df[features], df[target], test_size=test_size, random_state=42
     )
 
+    from sklearn.preprocessing import StandardScaler
+
+    scale = st.checkbox("Apply Feature Scaling")
+
+    if scale:
+        scaler = StandardScaler()
+        X_train = scaler.fit_transform(X_train)
+        X_test = scaler.transform(X_test)
+
     if st.button("Train Model"):
+
+        # Train model
         model.fit(X_train, y_train)
-    
-        st.session_state.model = model
-        st.session_state.y_pred = model.predict(X_test)
-        st.session_state.model_trained = True
 
-    # Feature to select 2 Features for KNN Visualization
-    if is_classification and model_name == "K-Nearest Neighbors":
+        # Make predictions
+        y_pred = model.predict(X_test)
 
-        if len(features) >= 2:
-            feat1 = st.selectbox("Feature 1 for Visualization", features)
-            feat2 = st.selectbox("Feature 2 for Visualization", features, index=1)
+        # Feature to select 2 Features for KNN Visualization
+        if is_classification and model_name == "K-Nearest Neighbors":
 
-            if feat1 == feat2:
-                st.warning("Please select two different features.")
-        else:
-            st.warning("Need at least 2 features.")
-
-
-    # KNN Decision Boundary Visualization
-    if is_classification and model_name == "K-Nearest Neighbors":
-        st.subheader("KNN Decision Boundary")
-
-        if X_train.shape[1] >= 2:
-            # Use first 2 features for visualization
-            # Use selected features for visualization
-            X_vis = X_train[:, [features.index(feat1), features.index(feat2)]] if scale else X_train[[feat1, feat2]].values
-            y_vis = y_train.values
-
-            # Train visualization model
-            vis_model = KNeighborsClassifier(n_neighbors=k)
-            vis_model.fit(X_vis, y_vis)
-
-            # Create mesh grid
-            x_min, x_max = X_vis[:, 0].min() - 1, X_vis[:, 0].max() + 1
-            y_min, y_max = X_vis[:, 1].min() - 1, X_vis[:, 1].max() + 1
-
-            xx, yy = np.meshgrid(
-                np.linspace(x_min, x_max, 200),
-                np.linspace(y_min, y_max, 200)
-            )
-
-            grid = np.c_[xx.ravel(), yy.ravel()]
-            Z = vis_model.predict(grid)
-            Z = Z.reshape(xx.shape)
-
-            # Plot decision boundary
-            fig, ax = plt.subplots()
-            ax.contourf(xx, yy, Z, alpha=0.3, cmap="coolwarm")
-
-            # Plot training points
-            scatter = ax.scatter(
-                X_vis[:, 0], X_vis[:, 1],
-                c=y_vis,
-                cmap="coolwarm",
-                edgecolors="k"
-            )
-
-            ax.set_title(f"KNN Decision Boundary (k={k})")
-            ax.set_xlabel("Feat1")
-            ax.set_ylabel("Feat2")
-
-            st.pyplot(fig)
-        else:
-            st.warning("Need at least 2 features to plot KNN decision boundary.")
-
-    if is_classification and model_name == "Logistic Regression":
-        st.subheader("Logistic Regression Decision Boundary")
-
-        # Train main model on all features for predictions & metrics
-        main_model = LogisticRegression(C=C, max_iter=1000)
-        main_model.fit(X_train, y_train)
-
-        # Decision Tree Boundary Plot
-        if X_train.shape[1] >= 2:
-            vis_model = LogisticRegression(C=C, max_iter=1000)
-            # Allow user to select features for Logistic Regression visualization
             if len(features) >= 2:
-                feat1 = st.selectbox("Feature 1 for Logistic Regression Visualization", features)
-                feat2 = st.selectbox("Feature 2 for Logistic Regression Visualization", features, index=1)
-            
+                feat1 = st.selectbox("Feature 1 for Visualization", features)
+                feat2 = st.selectbox("Feature 2 for Visualization", features, index=1)
+
                 if feat1 == feat2:
                     st.warning("Please select two different features.")
             else:
-                st.warning("Need at least 2 features to visualize decision boundary.")
-            X_vis = X_train[:, [features.index(feat1), features.index(feat2)]] if scale else X_train[[feat1, feat2]].values
-            y_vis = y_train.values
-            vis_model.fit(X_vis, y_vis)
+                st.warning("Need at least 2 features.")
 
-            # Create mesh grid
-            x_min, x_max = X_vis[:, 0].min() - 1, X_vis[:, 0].max() + 1
-            y_min, y_max = X_vis[:, 1].min() - 1, X_vis[:, 1].max() + 1
-            xx, yy = np.meshgrid(
-                np.linspace(x_min, x_max, 100),
-                np.linspace(y_min, y_max, 100)
-            )
-            grid = np.c_[xx.ravel(), yy.ravel()]
-            probs = vis_model.predict_proba(grid)[:, 1].reshape(xx.shape)
 
-            # Plot
+        # KNN Decision Boundary Visualization
+        if is_classification and model_name == "K-Nearest Neighbors":
+            st.subheader("KNN Decision Boundary")
+
+            if X_train.shape[1] >= 2:
+                # Use first 2 features for visualization
+                # Use selected features for visualization
+                X_vis = X_train[:, [features.index(feat1), features.index(feat2)]] if scale else X_train[[feat1, feat2]].values
+                y_vis = y_train.values
+
+                # Train visualization model
+                vis_model = KNeighborsClassifier(n_neighbors=k)
+                vis_model.fit(X_vis, y_vis)
+
+                # Create mesh grid
+                x_min, x_max = X_vis[:, 0].min() - 1, X_vis[:, 0].max() + 1
+                y_min, y_max = X_vis[:, 1].min() - 1, X_vis[:, 1].max() + 1
+
+                xx, yy = np.meshgrid(
+                    np.linspace(x_min, x_max, 200),
+                    np.linspace(y_min, y_max, 200)
+                )
+
+                grid = np.c_[xx.ravel(), yy.ravel()]
+                Z = vis_model.predict(grid)
+                Z = Z.reshape(xx.shape)
+
+                # Plot decision boundary
+                fig, ax = plt.subplots()
+                ax.contourf(xx, yy, Z, alpha=0.3, cmap="coolwarm")
+
+                # Plot training points
+                scatter = ax.scatter(
+                    X_vis[:, 0], X_vis[:, 1],
+                    c=y_vis,
+                    cmap="coolwarm",
+                    edgecolors="k"
+                )
+
+                ax.set_title(f"KNN Decision Boundary (k={k})")
+                ax.set_xlabel("Feat1")
+                ax.set_ylabel("Feat2")
+
+                st.pyplot(fig)
+            else:
+                st.warning("Need at least 2 features to plot KNN decision boundary.")
+
+        if is_classification and model_name == "Logistic Regression":
+            st.subheader("Logistic Regression Decision Boundary")
+
+            # Train main model on all features for predictions & metrics
+            main_model = LogisticRegression(C=C, max_iter=1000)
+            main_model.fit(X_train, y_train)
+
+            # Decision Tree Boundary Plot
+            if X_train.shape[1] >= 2:
+                vis_model = LogisticRegression(C=C, max_iter=1000)
+                # Allow user to select features for Logistic Regression visualization
+                if len(features) >= 2:
+                    feat1 = st.selectbox("Feature 1 for Logistic Regression Visualization", features)
+                    feat2 = st.selectbox("Feature 2 for Logistic Regression Visualization", features, index=1)
+
+                    if feat1 == feat2:
+                        st.warning("Please select two different features.")
+                else:
+                    st.warning("Need at least 2 features to visualize decision boundary.")
+                X_vis = X_train[:, [features.index(feat1), features.index(feat2)]] if scale else X_train[[feat1, feat2]].values
+                y_vis = y_train.values
+                vis_model.fit(X_vis, y_vis)
+
+                # Create mesh grid
+                x_min, x_max = X_vis[:, 0].min() - 1, X_vis[:, 0].max() + 1
+                y_min, y_max = X_vis[:, 1].min() - 1, X_vis[:, 1].max() + 1
+                xx, yy = np.meshgrid(
+                    np.linspace(x_min, x_max, 100),
+                    np.linspace(y_min, y_max, 100)
+                )
+                grid = np.c_[xx.ravel(), yy.ravel()]
+                probs = vis_model.predict_proba(grid)[:, 1].reshape(xx.shape)
+
+                # Plot
+                fig, ax = plt.subplots()
+                ax.contourf(xx, yy, probs, alpha=0.3, cmap="coolwarm")
+                ax.scatter(X_vis[:, 0], X_vis[:, 1], c=y_vis, cmap="coolwarm", edgecolors="k")
+                ax.set_xlabel(feat1)
+                ax.set_ylabel(feat2)
+                ax.set_title(f"Decision Boundary (Logistic Regression)")
+                st.pyplot(fig)
+            else:
+                st.warning("Need at least 2 features to plot decision boundary.")
+
+            # Metrics with main model
+            st.subheader("Model Performance")
+            accuracy = accuracy_score(y_test, y_pred)
+            st.write(f"Accuracy: {accuracy:.2f}")
+
+            cm = confusion_matrix(y_test, y_pred)
             fig, ax = plt.subplots()
-            ax.contourf(xx, yy, probs, alpha=0.3, cmap="coolwarm")
-            ax.scatter(X_vis[:, 0], X_vis[:, 1], c=y_vis, cmap="coolwarm", edgecolors="k")
-            ax.set_xlabel(feat1)
-            ax.set_ylabel(feat2)
-            ax.set_title(f"Decision Boundary (Logistic Regression)")
+            sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
+            ax.set_xlabel("Predicted")
+            ax.set_ylabel("Actual")
             st.pyplot(fig)
-        else:
-            st.warning("Need at least 2 features to plot decision boundary.")
 
-        # Metrics with main model
-        st.subheader("Model Performance")
-        accuracy = accuracy_score(y_test, y_pred)
-        st.write(f"Accuracy: {accuracy:.2f}")
+            st.subheader("Classification Report")
+            st.text(classification_report(y_test, y_pred))
 
-        cm = confusion_matrix(y_test, y_pred)
-        fig, ax = plt.subplots()
-        sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
-        ax.set_xlabel("Predicted")
-        ax.set_ylabel("Actual")
-        st.pyplot(fig)
-
-        st.subheader("Classification Report")
-        st.text(classification_report(y_test, y_pred))
-
-        if len(np.unique(y_test)) == 2:
-            y_probs = main_model.predict_proba(X_test)[:, 1]
-            fpr, tpr, _ = roc_curve(y_test, y_probs)
-            roc_auc = roc_auc_score(y_test, y_probs)
-            fig2, ax2 = plt.subplots()
-            ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
-            ax2.plot([0, 1], [0, 1], linestyle="--")
-            ax2.legend()
-            st.pyplot(fig2)
-        else:
-            st.write("ROC curve is only for binary classification.")
+            if len(np.unique(y_test)) == 2:
+                y_probs = main_model.predict_proba(X_test)[:, 1]
+                fpr, tpr, _ = roc_curve(y_test, y_probs)
+                roc_auc = roc_auc_score(y_test, y_probs)
+                fig2, ax2 = plt.subplots()
+                ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
+                ax2.plot([0, 1], [0, 1], linestyle="--")
+                ax2.legend()
+                st.pyplot(fig2)
+            else:
+                st.write("ROC curve is only for binary classification.")
 
 
-    # Show Decision Tree Visualization
-    if is_classification and model_name == "Decision Tree":
-        st.subheader("Decision Tree Visualization")
+        # Show Decision Tree Visualization
+        if is_classification and model_name == "Decision Tree":
+            st.subheader("Decision Tree Visualization")
 
-        fig, ax = plt.subplots(figsize=(20, 10))
-        plot_tree(
-            model,
-            feature_names=features,
-            class_names=[str(c) for c in np.unique(y)],
-            filled=True,
-            rounded=True,
-            fontsize=10
-        )
-        st.pyplot(fig)
+            fig, ax = plt.subplots(figsize=(20, 10))
+            plot_tree(
+                model,
+                feature_names=features,
+                class_names=[str(c) for c in np.unique(y)],
+                filled=True,
+                rounded=True,
+                fontsize=10
+            )
+            st.pyplot(fig)
 
-    if model_name != "Logistic Regression":
-        st.subheader("Model Performance")
-    
-    # Classification models (Decision Tree, KNN ONLY)
-    if is_classification and model_name != "Logistic Regression":
-        # Accuracy
-        accuracy = accuracy_score(y_test, y_pred)
-        st.write(f"Accuracy: {accuracy:.2f}")
-        st.info("Accuracy = percentage of correct predictions.")
-    
-        # Confusion Matrix
-        cm = confusion_matrix(y_test, y_pred)
-        fig, ax = plt.subplots()
-        sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
-        ax.set_xlabel("Predicted")
-        ax.set_ylabel("Actual")
-        st.pyplot(fig)
-    
-        # Classification Report
-        st.subheader("Classification Report")
-        st.text(classification_report(y_test, y_pred))
-    
-        # ROC Curve (binary only)
-        if len(np.unique(y_test)) == 2:
-            y_probs = model.predict_proba(X_test)[:, 1]
-            fpr, tpr, _ = roc_curve(y_test, y_probs)
-            roc_auc = roc_auc_score(y_test, y_probs)
-            fig2, ax2 = plt.subplots()
-            ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
-            ax2.plot([0, 1], [0, 1], linestyle="--")
-            ax2.legend()
-            st.pyplot(fig2)
-        else:
-            st.write("ROC curve is only for binary classification.")
-    
-    # Regression models ONLY
-    elif not is_classification:
-        mse = mean_squared_error(y_test, y_pred)
-        r2 = r2_score(y_test, y_pred)
-        st.write(f"Mean Squared Error (MSE): {mse:.2f}")
-        st.write(f"R² Score: {r2:.2f}")
-        st.info("R² closer to 1 means the model explains the data well.")
-    
-        # Actual vs Predicted
-        fig3, ax3 = plt.subplots()
-        ax3.scatter(y_test, y_pred, alpha=0.7)
-        ax3.set_xlabel(target)
-        ax3.set_ylabel(f"Predicted {target}")
-        ax3.set_title("Actual vs Predicted")
-        st.pyplot(fig3)
-    
-        # Residuals
-        residuals = y_test - y_pred
-        fig4, ax4 = plt.subplots()
-        sns.histplot(residuals, kde=True, ax=ax4)
-        ax4.set_title("Residual Distribution")
-        st.pyplot(fig4)
+        if model_name != "Logistic Regression":
+            st.subheader("Model Performance")
+
+        # Classification models (Decision Tree, KNN ONLY)
+        if is_classification and model_name != "Logistic Regression":
+            # Accuracy
+            accuracy = accuracy_score(y_test, y_pred)
+            st.write(f"Accuracy: {accuracy:.2f}")
+            st.info("Accuracy = percentage of correct predictions.")
+
+            # Confusion Matrix
+            cm = confusion_matrix(y_test, y_pred)
+            fig, ax = plt.subplots()
+            sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
+            ax.set_xlabel("Predicted")
+            ax.set_ylabel("Actual")
+            st.pyplot(fig)
+
+            # Classification Report
+            st.subheader("Classification Report")
+            st.text(classification_report(y_test, y_pred))
+
+            # ROC Curve (binary only)
+            if len(np.unique(y_test)) == 2:
+                y_probs = model.predict_proba(X_test)[:, 1]
+                fpr, tpr, _ = roc_curve(y_test, y_probs)
+                roc_auc = roc_auc_score(y_test, y_probs)
+                fig2, ax2 = plt.subplots()
+                ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
+                ax2.plot([0, 1], [0, 1], linestyle="--")
+                ax2.legend()
+                st.pyplot(fig2)
+            else:
+                st.write("ROC curve is only for binary classification.")
+
+        # Regression models ONLY
+        elif not is_classification:
+            mse = mean_squared_error(y_test, y_pred)
+            r2 = r2_score(y_test, y_pred)
+            st.write(f"Mean Squared Error (MSE): {mse:.2f}")
+            st.write(f"R² Score: {r2:.2f}")
+            st.info("R² closer to 1 means the model explains the data well.")
+
+            # Actual vs Predicted
+            fig3, ax3 = plt.subplots()
+            ax3.scatter(y_test, y_pred, alpha=0.7)
+            ax3.set_xlabel(target)
+            ax3.set_ylabel(f"Predicted {target}")
+            ax3.set_title("Actual vs Predicted")
+            st.pyplot(fig3)
+
+            # Residuals
+            residuals = y_test - y_pred
+            fig4, ax4 = plt.subplots()
+            sns.histplot(residuals, kde=True, ax=ax4)
+            ax4.set_title("Residual Distribution")
+            st.pyplot(fig4)
 
 
 else:
