@@ -409,6 +409,15 @@ if df is not None and target and features and target not in features:
             # Decision Tree Boundary Plot
             if X_train.shape[1] >= 2:
                 vis_model = LogisticRegression(C=C, max_iter=1000)
+                # Allow user to select features for Logistic Regression visualization
+                if len(features) >= 2:
+                    feat1 = st.selectbox("Feature 1 for Logistic Regression Visualization", features)
+                    feat2 = st.selectbox("Feature 2 for Logistic Regression Visualization", features, index=1)
+                
+                    if feat1 == feat2:
+                        st.warning("Please select two different features.")
+                else:
+                    st.warning("Need at least 2 features to visualize decision boundary.")
                 X_vis = X_train[:, [features.index(feat1), features.index(feat2)]] if scale else X_train[[feat1, feat2]].values
                 y_vis = y_train.values
                 vis_model.fit(X_vis, y_vis)
