@@ -5,19 +5,22 @@
 
 
 - Work will be filed in the following manner:
-    - [Experimental Data Analysis (EDA)](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA)
-    - [Visualizations](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Visualizations)
-    - [Models](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models)
-    - [Miscellaneous](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Miscellaneous)
+    - [Experimental Data Analysis (EDA)](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA) - Cleaning, exploring, and summarizing datasets.
+    - [Visualizations](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Visualizations) - Charts, plots, and data storytelling.
+    - [Models](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models) - Machine learning experiments and model evaluation.
+    - [Miscellaneous](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Miscellaneous) - Other projects and experiments.
+
+**Latest Project:** [**Machine Learning Streamlit App**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+- Upload your own datasets
+- Train classification (Logistic Regression, Decision Trees, KNN) and regression (Linear Regression) models
+- Visualize results with metrics and plots
+- Adjust hyperparameters and see how they impact model performance
+
+Creating this app helped me better understand how model choice and hyperparameter selection directly affect outcomes like accuracy and recall, demonstrating how different machine learning models can produce different results despite using the same data.
+
+*This app builds on my experience with EDA and data cleaning to now handle full machine learning analysis, exploring how to choose the right ML model and pick the right parameters, strengthening my ability to model and visualize data.*
 
 
-
-
-[**Here**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLStreamlitApp) **is my most recent project!** It's a *Machine Learning Streamlit App* where you can upload datasets, train classification or regression models, and visualize results with metrics and plots. It supports Logistic Regression, Decision Trees, KNN, and Linear Regression. 
-
-This is my first ***Machine Learning Modeling*** application and only my second ***Streamlit App***1
-
-
-**NOTE**: I have two previous projects that I think you should also take a look at!
-- First, a streamlit basketball statistics app that can tell you statistics about any player since 1996! Check it out [HERE!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
-- Second, an EDA of a very untidy (but now super tidy) 2008 Olympics dataset. Check that out [Here!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
+**Previous Projects**
+- **Basketball Statistics Streamlit App** – Explore NBA player statistics from 1996 onward. [**Check it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App)
+- **2008 Olympics EDA Project** – Cleaning and analyzing a messy dataset, now fully tidy. [**Explore it here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
