@@ -200,7 +200,7 @@ if df is not None:
         "Missing Values": missing_counts.values,
         "Percent Missing": (missing_counts.values / df.shape[0] * 100).round(2)
     })
-    
+
     if missing_counts.sum() > 0:
         st.dataframe(missing_df)
     else:
@@ -242,6 +242,8 @@ if df is not None:
         features.remove(target)
         st.warning(f"Target variable '{target}' was removed from features.")
 
+
+
 # Train-Test Split: Split the dataset into training and testing sets to evaluate performance
 if target and features and target not in features:
 
@@ -281,54 +283,37 @@ if target and features and target not in features:
 
 
 # Model Selection and Hyperparameter Tuning
-# --- Model Selection Based on User Task Type ---
-st.subheader("Choose a Model")
+if target and features and target not in features:
+    if is_classification:
+        # Make the label bold using st.subheader or st.markdown
+        st.subheader("Choose a Classification Model")
 
-# Let the user choose the task type manually (Classification or Regression)
-task_type = st.radio(
-    "Choose the type of ML task you want to perform:",
-    ["Classification", "Regression"],
-    index=0 if is_classification_target(df[target]) else 1
-)
+        # Then show the selectbox without a label (or a short one)
+        model_name = st.selectbox(
+            "Select between a Logistic Regression, Decision Tree, and K-Nearest Neighbor model",
+            ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
+        )
 
-is_classification = task_type == "Classification"
-
-# Model selection and hyperparameters
-if is_classification:
-    # Classification models
-    model_name = st.selectbox(
-        "Select Classification Model:",
-        ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
-    )
-
-    st.subheader("Hyperparameter Tuning")
-    if model_name == "Logistic Regression":
-        C = st.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
-        model = LogisticRegression(C=C, max_iter=1000)
-    elif model_name == "Decision Tree":
-        max_depth = st.slider("Max Depth", 1, 10, 4)
-        model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
-    elif model_name == "K-Nearest Neighbors":
-        k = st.slider("Number of Neighbors (k)", 1, 15, 5)
-        model = KNeighborsClassifier(n_neighbors=k)
-
-else:
-    # Regression models
-    model_name = st.selectbox(
-        "Select Regression Model:",
-        ["Linear Regression", "Logistic Regression (for binary targets)"]
-    )
-
-    if model_name == "Linear Regression":
-        model = LinearRegression()
-    elif model_name == "Logistic Regression (for binary targets)":
-        # Only allow if target is binary
-        if df[target].nunique() == 2:
+    else:
+        model_name = st.selectbox(
+            "Regression Model:",
+            ["Linear Regression"]
+        )
+    if is_classification:
+        st.subheader("Hyperparameter Tuning")
+        if model_name == "Logistic Regression":
             C = st.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
             model = LogisticRegression(C=C, max_iter=1000)
-        else:
-            st.warning("Logistic Regression requires a binary target. Falling back to Linear Regression.")
-            model = LinearRegression()
+        elif model_name == "Decision Tree":
+            max_depth = st.slider("Max Depth", 1, 10, 4)
+            model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
+        elif model_name == "K-Nearest Neighbors":
+            k = st.slider("Number of Neighbors (k)", 1, 15, 5)
+            model = KNeighborsClassifier(n_neighbors=k)
+    else:
+        st.subheader("Linear Regression (Continuous Prediction)")
+        st.write("This model predicts continuous values using a linear relationship.")
+        model = LinearRegression()
 
 
 
@@ -419,52 +404,53 @@ if df is not None and target and features and target not in features:
 
         if is_classification and model_name == "Logistic Regression":
             st.subheader("Logistic Regression Sigmoid Curve")
-        
+
             # Train model on full feature set
             model = LogisticRegression(C=C, max_iter=1000)
             model.fit(X_train, y_train)
-        
+
             # Let user pick feature to visualize
             feature_name = st.selectbox("Select Feature for Sigmoid Curve", features)
-        
+
             # Get index of selected feature
             feature_index = features.index(feature_name)
-        
+
             # Create a baseline (mean of all features)
             if scale:
                 baseline = np.mean(X_train, axis=0)
             else:
                 baseline = X_train.mean().values
-        
+
             # Create range for selected feature
             if scale:
                 feature_values = X_train[:, feature_index]
             else:
                 feature_values = X_train[feature_name].values
-        
+
             x_range = np.linspace(feature_values.min(), feature_values.max(), 200)
-        
+
             # Create input matrix where all features are fixed except one
             X_plot = np.tile(baseline, (len(x_range), 1))
             X_plot[:, feature_index] = x_range
-        
+
             # Predict probabilities
             y_probs = model.predict_proba(X_plot)[:, 1]
 
             # Get the positive class label
             positive_class = model.classes_[1]
-            
+
             fig, ax = plt.subplots()
             ax.plot(x_range, y_probs, color="red", label=f"P({positive_class})")
-            
+
             # Scatter actual data
             ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
-            
+
             # Updated labels
             ax.set_xlabel(feature_name)  # Feature on X-axis
-            ax.set_ylabel(f"Predicted Probability of {target}")  # Show target name
+            ax.set_ylabel(f"Predicted Probability of {positive_class} ({target})")  # Show target name
+            ax.set_ylabel(f"Predicted Probability of ({target})")  # Show target name
             ax.set_title(f"Effect of {feature_name} on Probability of {positive_class} ({target})")
-            
+
             ax.legend()
             st.pyplot(fig)
 
