@@ -1,14 +1,12 @@
-**Machine Learning Streamlit App**
+# Machine Learning Streamlit App
 
-This is an interactive Streamlit app that lets users explore supervised machine learning. Users upload datasets, select features/targets, tune models, and evaluate performance.
+This is an interactive Streamlit app that lets users conduct supervised machine learning. Users can upload datasets, select their model and features, and then evaluate the data using provided visuals.
 
 **How To Use**
-- git clone <your-repo-link>
-- cd MLStreamlitApp
-- Install streamlit pandas numpy seaborn matplotlib scikit-learn
-- streamlit run MLStreamlitApp.py
-
-*Deployed App*: 
+- Click the Link [HERE](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/) to deploy the App.
+     - Link URL: [https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/)
+  - If running the app locally:
+      - 
 
 **APP FEATURES**
 - Use a ***Sample Dataset*** or ***Upload your own***!
