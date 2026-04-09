@@ -242,23 +242,6 @@ if df is not None:
         features.remove(target)
         st.warning(f"Target variable '{target}' was removed from features.")
 
-    # --- Task Type Selection (User Override) ---
-    st.subheader("Task Type Selection")
-    
-    # Suggestion based on original numeric heuristic
-    suggested_task = "Classification" if is_classification_target(df[target]) else "Regression"
-    st.info(f"Suggested Task Type Based on Target Column '{target}': {suggested_task}")
-    
-    # Let user manually select the task type
-    task_type = st.radio(
-        "Choose the type of ML task you want to perform:",
-        ["Classification", "Regression"],
-        index=0 if suggested_task == "Classification" else 1
-    )
-
-# Use this variable downstream
-is_classification = task_type == "Classification"
-
 # Train-Test Split: Split the dataset into training and testing sets to evaluate performance
 if target and features and target not in features:
 
