@@ -284,22 +284,21 @@ if target and features and target not in features:
 
 # Model Selection and Hyperparameter Tuning
 if target and features and target not in features:
-    if is_classification:
-        # Make the label bold using st.subheader or st.markdown
-        st.subheader("Choose a Classification Model")
 
-        # Then show the selectbox without a label (or a short one)
+    # Ensure task type is compatible with target
+    if is_classification:
+        # Confirm target is suitable for classification
+        if not is_classification_target(y):
+            st.warning(f"Target '{target}' is continuous. Switching to Regression instead.")
+            is_classification = False
+
+    if is_classification:
+        st.subheader("Choose a Classification Model")
         model_name = st.selectbox(
-            "Select between a Logistic Regression, Decision Tree, and K-Nearest Neighbor model",
+            "Select Classification Model",
             ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]
         )
 
-    else:
-        model_name = st.selectbox(
-            "Regression Model:",
-            ["Linear Regression"]
-        )
-    if is_classification:
         st.subheader("Hyperparameter Tuning")
         if model_name == "Logistic Regression":
             C = st.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
@@ -310,10 +309,17 @@ if target and features and target not in features:
         elif model_name == "K-Nearest Neighbors":
             k = st.slider("Number of Neighbors (k)", 1, 15, 5)
             model = KNeighborsClassifier(n_neighbors=k)
-    else:
-        st.subheader("Linear Regression (Continuous Prediction)")
-        st.write("This model predicts continuous values using a linear relationship.")
-        model = LinearRegression()
+
+    else:  # Regression
+        st.subheader("Choose a Regression Model")
+        model_name = st.selectbox(
+            "Select Regression Model",
+            ["Linear Regression"]
+        )
+        st.subheader("Hyperparameter Tuning")
+        if model_name == "Linear Regression":
+            model = LinearRegression()
+
 
 
 
