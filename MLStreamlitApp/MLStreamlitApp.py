@@ -549,7 +549,7 @@ if df is not None and target and features and target not in features:
             residuals = y_test - y_pred
             fig4, ax4 = plt.subplots()
             sns.histplot(residuals, kde=True, ax=ax4)
-            ax4.set_title("Residual Distribution")
+            ax4.set_title(f"Residuals for {target}")
             st.pyplot(fig4)
 
 else:
