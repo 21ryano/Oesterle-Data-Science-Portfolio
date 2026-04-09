@@ -390,8 +390,8 @@ if df is not None and target and features and target not in features:
                 )
 
                 ax.set_title(f"KNN Decision Boundary (k={k})")
-                ax.set_xlabel("Feature 1")
-                ax.set_ylabel("Feature 2")
+                ax.set_xlabel("Feat1")
+                ax.set_ylabel("Feat2")
 
                 st.pyplot(fig)
             else:
