@@ -30,8 +30,14 @@ from sklearn.tree import plot_tree
 
 from pandas.api.types import is_numeric_dtype
 
-if "trained" not in st.session_state:
-    st.session_state.trained = False
+if "model_trained" not in st.session_state:
+    st.session_state.model_trained = False
+
+if "model" not in st.session_state:
+    st.session_state.model = None
+
+if "y_pred" not in st.session_state:
+    st.session_state.y_pred = None
 
 # Identify whether data is discrete or continuous
 def is_classification_target(y, threshold=15):
@@ -332,13 +338,12 @@ if df is not None and target and features and target not in features:
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
 
-    if st.button("Train Model"):
-
-        # Train model
-        model.fit(X_train, y_train)
-
-        # Make predictions
-        y_pred = model.predict(X_test)
+        if st.button("Train Model"):
+            model.fit(X_train, y_train)
+        
+            st.session_state.model = model
+            st.session_state.y_pred = model.predict(X_test)
+            st.session_state.model_trained = True
 
         # Feature to select 2 Features for KNN Visualization
         if is_classification and model_name == "K-Nearest Neighbors":
