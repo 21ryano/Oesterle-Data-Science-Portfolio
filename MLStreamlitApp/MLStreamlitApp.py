@@ -249,7 +249,6 @@ if target and features and target not in features:
 
     X = df[features]
     y = df[target]
-    is_binary = is_classification_target(y) and y.nunique() == 2
     is_classification = is_classification_target(y)
     if is_classification:
         st.success("Detected Classification Problem")
@@ -479,40 +478,6 @@ if df is not None and target and features and target not in features:
                 ax.legend()
                 st.pyplot(fig)
 
-
-            if is_binary:
-                model = LogisticRegression(max_iter=1000)
-                model.fit(X_train, y_train)
-            
-                # Predict probabilities for the positive class (1)
-                y_probs = model.predict_proba(X_test)[:, 1]
-            
-                # Put probabilities into a DataFrame for easy plotting
-                X_test_df = X_test.copy() if isinstance(X_test, pd.DataFrame) else pd.DataFrame(X_test, columns=features)
-                X_test_df['Pred_Probability'] = y_probs
-
-            # Only do this for binary classification
-            if is_classification and len(np.unique(y_train)) == 2 and model_name == "Logistic Regression":
-            
-                # Create X_test DataFrame and add predicted probabilities
-                X_test_df = pd.DataFrame(X_test, columns=features) if isinstance(X_test, np.ndarray) else X_test.copy()
-                X_test_df['Pred_Probability'] = model.predict_proba(X_test)[:, 1]
-            
-                # Only show numeric features for plotting
-                numeric_features = [f for f in features if np.issubdtype(df[f].dtype, np.number)]
-            
-                if numeric_features:
-                    feature_to_plot = st.selectbox("Select a Feature to plot Probability vs", numeric_features)
-            
-                    st.subheader(f"Predicted Probability of {target}=1 vs {feature_to_plot}")
-            
-                    plt.figure(figsize=(8,5))
-                    sns.scatterplot(x=X_test_df[feature_to_plot], y=X_test_df['Pred_Probability'], alpha=0.5)
-                    sns.lineplot(x=X_test_df[feature_to_plot], y=X_test_df['Pred_Probability'], ci=None, color='red')
-                    plt.xlabel(feature_to_plot)
-                    plt.ylabel(f"Predicted Probability of {target}=1")
-                    plt.title(f"Effect of {feature_to_plot} on Probability of {target}")
-                    st.pyplot(plt.gcf())
 
             # Metrics with main model
             st.subheader("Model Performance")
