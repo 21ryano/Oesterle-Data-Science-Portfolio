@@ -424,6 +424,10 @@ if df is not None and target and features and target not in features:
             else:
                 st.warning("Need at least 2 features to plot KNN decision boundary.")
 
+        st.subheader("Logistic Regression Sigmoid Curve")
+        # Let user pick feature for sigmoid curve
+        feature_name = st.selectbox("Select Feature for Sigmoid Curve", features)
+        
         # Ensure X_train_df is always a DataFrame with correct columns
         X_train_df = pd.DataFrame(X_train, columns=features) if isinstance(X_train, np.ndarray) else X_train.copy()
         
