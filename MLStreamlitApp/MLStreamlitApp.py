@@ -403,43 +403,50 @@ if df is not None and target and features and target not in features:
         if is_classification and model_name == "Logistic Regression":
             st.subheader("Logistic Regression Sigmoid Curve")
         
-            # Train model
+            # Train model on full feature set
             model = LogisticRegression(C=C, max_iter=1000)
             model.fit(X_train, y_train)
         
-            # Use ONE feature for sigmoid visualization
-            if X_train.shape[1] >= 1:
-                # Select first feature
-                X_vis = X_train[:, 0] if scale else X_train.iloc[:, 0].values
-                y_vis = y_train.values
+            # Let user pick feature to visualize
+            feature_name = st.selectbox("Select Feature for Sigmoid Curve", features)
         
-                # Create range of values
-                x_range = np.linspace(X_vis.min(), X_vis.max(), 200)
+            # Get index of selected feature
+            feature_index = features.index(feature_name)
         
-                # Get model coefficients
-                coef = model.coef_[0][0]
-                intercept = model.intercept_[0]
-        
-                # Sigmoid function
-                def sigmoid(x):
-                    return 1 / (1 + np.exp(-(coef * x + intercept)))
-        
-                y_prob = sigmoid(x_range)
-        
-                # Plot
-                fig, ax = plt.subplots()
-                ax.scatter(X_vis, y_vis, alpha=0.5, label="Data")
-                ax.plot(x_range, y_prob, color="red", label="Sigmoid Curve")
-        
-                ax.set_xlabel("Feature Value")
-                ax.set_ylabel("Probability")
-                ax.set_title("Logistic Regression Sigmoid Curve")
-                ax.legend()
-        
-                st.pyplot(fig)
-        
+            # Create a baseline (mean of all features)
+            if scale:
+                baseline = np.mean(X_train, axis=0)
             else:
-                st.warning("Need at least 1 feature to plot sigmoid curve.")
+                baseline = X_train.mean().values
+        
+            # Create range for selected feature
+            if scale:
+                feature_values = X_train[:, feature_index]
+            else:
+                feature_values = X_train[feature_name].values
+        
+            x_range = np.linspace(feature_values.min(), feature_values.max(), 200)
+        
+            # Create input matrix where all features are fixed except one
+            X_plot = np.tile(baseline, (len(x_range), 1))
+            X_plot[:, feature_index] = x_range
+        
+            # Predict probabilities
+            y_probs = model.predict_proba(X_plot)[:, 1]
+        
+            # Plot
+            fig, ax = plt.subplots()
+            ax.plot(x_range, y_probs, color="red", label="Probability Curve")
+        
+            # Scatter actual data (for reference)
+            ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
+        
+            ax.set_xlabel(feature_name)
+            ax.set_ylabel("Probability")
+            ax.set_title(f"Effect of {feature_name} on Prediction")
+            ax.legend()
+        
+            st.pyplot(fig)
 
             # Metrics with main model
             st.subheader("Model Performance")
