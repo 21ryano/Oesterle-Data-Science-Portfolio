@@ -357,7 +357,8 @@ if df is not None and target and features and target not in features:
 
             if X_train.shape[1] >= 2:
                 # Use first 2 features for visualization
-                X_vis = X_train[:, :2] if scale else X_train.iloc[:, :2].values
+                # Use selected features for visualization
+                X_vis = X_train[:, [features.index(feat1), features.index(feat2)]] if scale else X_train[[feat1, feat2]].values
                 y_vis = y_train.values
 
                 # Train visualization model
@@ -408,7 +409,7 @@ if df is not None and target and features and target not in features:
             # Decision Tree Boundary Plot
             if X_train.shape[1] >= 2:
                 vis_model = LogisticRegression(C=C, max_iter=1000)
-                X_vis = X_train[:, :2] if scale else X_train.iloc[:, :2].values
+                X_vis = X_train[:, [features.index(feat1), features.index(feat2)]] if scale else X_train[[feat1, feat2]].values
                 y_vis = y_train.values
                 vis_model.fit(X_vis, y_vis)
 
@@ -426,7 +427,9 @@ if df is not None and target and features and target not in features:
                 fig, ax = plt.subplots()
                 ax.contourf(xx, yy, probs, alpha=0.3, cmap="coolwarm")
                 ax.scatter(X_vis[:, 0], X_vis[:, 1], c=y_vis, cmap="coolwarm", edgecolors="k")
-                ax.set_title("Decision Boundary (Logistic Regression)")
+                ax.set_xlabel(feat1)
+                ax.set_ylabel(feat2)
+                ax.set_title(f"Decision Boundary (Logistic Regression)")
                 st.pyplot(fig)
             else:
                 st.warning("Need at least 2 features to plot decision boundary.")
@@ -518,8 +521,8 @@ if df is not None and target and features and target not in features:
             # Actual vs Predicted Plot
             fig3, ax3 = plt.subplots()
             ax3.scatter(y_test, y_pred, alpha=0.7)
-            ax3.set_xlabel("Actual Values")
-            ax3.set_ylabel("Predicted Values")
+            ax3.set_xlabel(target)
+            ax3.set_ylabel(f"Predicted {target}")
             ax3.set_title("Actual vs Predicted")
             st.pyplot(fig3)
 
