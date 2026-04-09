@@ -442,22 +442,40 @@ if df is not None and target and features and target not in features:
             # Predict probabilities
             y_probs = model.predict_proba(X_plot)[:, 1]
 
-            # Get the positive class label
-            positive_class = model.classes_[1]
-
-            fig, ax = plt.subplots()
-            ax.plot(x_range, y_probs, color="red", label=f"P({positive_class})")
-
-            # Scatter actual data
-            ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
-
-            # Updated labels
-            ax.set_xlabel(feature_name)  # Feature on X-axis
-            ax.set_ylabel(f"Predicted Probability of {target}")  # Show target name
-            ax.set_title(f"Effect of {feature_name} on Probability of {positive_class} ({target})")
-
-            ax.legend()
-            st.pyplot(fig)
+            # Logistic Regression Sigmoid Curve Fix
+            if is_classification and model_name == "Logistic Regression":
+            
+                # Ensure X_train is a DataFrame for easy column access
+                X_train_df = pd.DataFrame(X_train, columns=features) if scale else X_train.copy()
+                X_test_df = pd.DataFrame(X_test, columns=features) if scale else X_test.copy()
+            
+                # Let user pick feature for visualization
+                feature_name = st.selectbox("Select Feature for Sigmoid Curve", features)
+            
+                # Create baseline: mean of all features
+                baseline = X_train_df.mean().values
+            
+                # Range for selected feature
+                feature_values = X_train_df[feature_name].values
+                x_range = np.linspace(feature_values.min(), feature_values.max(), 200)
+            
+                # Build X_plot where all features fixed except one
+                X_plot = np.tile(baseline, (len(x_range), 1))
+                feature_index = features.index(feature_name)
+                X_plot[:, feature_index] = x_range
+            
+                # Predict probabilities
+                y_probs = model.predict_proba(X_plot)[:, 1]
+            
+                # Plot
+                fig, ax = plt.subplots()
+                ax.plot(x_range, y_probs, color="red", label=f"P({model.classes_[1]})")
+                ax.scatter(feature_values, y_train, alpha=0.3, label="Actual Data")
+                ax.set_xlabel(feature_name)
+                ax.set_ylabel(f"Predicted Probability of {target}")
+                ax.set_title(f"Effect of {feature_name} on Probability of {target}")
+                ax.legend()
+                st.pyplot(fig)
 
             # Metrics with main model
             st.subheader("Model Performance")
