@@ -487,7 +487,7 @@ if df is not None and target and features and target not in features:
 
         st.subheader("Model Performance")
 
-        if is_classification:
+        if is_classification and model_name != "Logistic Regression":
             # Accuracy
             accuracy = accuracy_score(y_test, y_pred)
             st.write(f"Accuracy: {accuracy:.2f}")
