@@ -325,7 +325,7 @@ if target and features and target not in features:
         model_name = st.selectbox("Select Regression Model", ["Linear Regression"])
         model = LinearRegression()
 
-    else:  # Regression
+       # Regression
         st.subheader("Choose a Regression Model")
         model_name = st.selectbox(
             "Select Regression Model",
