@@ -312,6 +312,11 @@ if target and features and target not in features:
             k = st.slider("Number of Neighbors (k)", 1, 15, 5)
             model = KNeighborsClassifier(n_neighbors=k)
 
+        if not is_classification and model_name in ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]:
+            st.warning("Target is continuous; switching to Linear Regression automatically.")
+            model_name = "Linear Regression"
+            model = LinearRegression()
+
     else:  # Regression
         st.subheader("Choose a Regression Model")
         model_name = st.selectbox(
