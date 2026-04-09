@@ -486,13 +486,14 @@ if df is not None and target and features and target not in features:
             st.pyplot(fig)
 
         st.subheader("Model Performance")
-
+        
+        # Classification models (Decision Tree, KNN ONLY)
         if is_classification and model_name != "Logistic Regression":
             # Accuracy
             accuracy = accuracy_score(y_test, y_pred)
             st.write(f"Accuracy: {accuracy:.2f}")
             st.info("Accuracy = percentage of correct predictions.")
-
+        
             # Confusion Matrix
             cm = confusion_matrix(y_test, y_pred)
             fig, ax = plt.subplots()
@@ -500,11 +501,11 @@ if df is not None and target and features and target not in features:
             ax.set_xlabel("Predicted")
             ax.set_ylabel("Actual")
             st.pyplot(fig)
-
+        
             # Classification Report
             st.subheader("Classification Report")
             st.text(classification_report(y_test, y_pred))
-
+        
             # ROC Curve (binary only)
             if len(np.unique(y_test)) == 2:
                 y_probs = model.predict_proba(X_test)[:, 1]
@@ -517,29 +518,30 @@ if df is not None and target and features and target not in features:
                 st.pyplot(fig2)
             else:
                 st.write("ROC curve is only for binary classification.")
-
-        else:
-            # Regression Metrics
+        
+        # Regression models ONLY
+        elif not is_classification:
             mse = mean_squared_error(y_test, y_pred)
             r2 = r2_score(y_test, y_pred)
             st.write(f"Mean Squared Error (MSE): {mse:.2f}")
             st.write(f"R² Score: {r2:.2f}")
             st.info("R² closer to 1 means the model explains the data well.")
-
-            # Actual vs Predicted Plot
+        
+            # Actual vs Predicted
             fig3, ax3 = plt.subplots()
             ax3.scatter(y_test, y_pred, alpha=0.7)
             ax3.set_xlabel(target)
             ax3.set_ylabel(f"Predicted {target}")
             ax3.set_title("Actual vs Predicted")
             st.pyplot(fig3)
-
-            # Residual Plot
+        
+            # Residuals
             residuals = y_test - y_pred
             fig4, ax4 = plt.subplots()
             sns.histplot(residuals, kde=True, ax=ax4)
             ax4.set_title("Residual Distribution")
             st.pyplot(fig4)
+
 
 else:
     st.info("Please upload or select a dataset to begin.")
