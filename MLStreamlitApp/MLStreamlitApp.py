@@ -424,62 +424,23 @@ if df is not None and target and features and target not in features:
             else:
                 st.warning("Need at least 2 features to plot KNN decision boundary.")
 
-        if is_classification and model_name == "Logistic Regression":
-            st.subheader("Logistic Regression Sigmoid Curve")
-
-            # Train model on full feature set
-            model = LogisticRegression(C=C, max_iter=1000)
-            model.fit(X_train, y_train)
-
-            # Let user pick feature to visualize
-            feature_name = st.selectbox("Select Feature for Sigmoid Curve", features)
-
-            # Get index of selected feature
-            feature_index = features.index(feature_name)
-
-            # Create a baseline (mean of all features)
-            if scale:
-                baseline = np.mean(X_train, axis=0)
-            else:
-                baseline = X_train.mean().values
-
-            # Create range for selected feature
-            if scale:
-                feature_values = X_train[:, feature_index]
-            else:
-                feature_values = X_train[feature_name].values
-
-            x_range = np.linspace(feature_values.min(), feature_values.max(), 200)
-
-            # Create input matrix where all features are fixed except one
-            X_plot = np.tile(baseline, (len(x_range), 1))
-            X_plot[:, feature_index] = x_range
-
-            # Predict probabilities
-            y_probs = model.predict_proba(X_plot)[:, 1]
-
-            # Logistic Regression Sigmoid Curve Fix
-            if is_classification and model_name == "Logistic Regression":
-            
-                # Ensure X_train is a DataFrame for easy column access
-                X_train_df = pd.DataFrame(X_train, columns=features) if scale else X_train.copy()
-                X_test_df = pd.DataFrame(X_test, columns=features) if scale else X_test.copy()
+        # Ensure X_train_df is always a DataFrame with correct columns
+        X_train_df = pd.DataFrame(X_train, columns=features) if isinstance(X_train, np.ndarray) else X_train.copy()
         
-            
-                # Create baseline: mean of all features
-                baseline = X_train_df.mean().values
-            
-                # Range for selected feature
-                feature_values = X_train_df[feature_name].values
-                x_range = np.linspace(feature_values.min(), feature_values.max(), 200)
-            
-                # Build X_plot where all features fixed except one
-                X_plot = np.tile(baseline, (len(x_range), 1))
-                feature_index = features.index(feature_name)
-                X_plot[:, feature_index] = x_range
-            
-                # Predict probabilities
-                y_probs = model.predict_proba(X_plot)[:, 1]
+        # Create baseline
+        baseline = X_train_df.mean().values
+        
+        # Range for selected feature
+        feature_index = features.index(feature_name)
+        feature_values = X_train_df[feature_name].values
+        x_range = np.linspace(feature_values.min(), feature_values.max(), 200)
+        
+        # Build X_plot
+        X_plot = np.tile(baseline, (len(x_range), 1))
+        X_plot[:, feature_index] = x_range
+        
+        # Predict probabilities
+        y_probs = model.predict_proba(X_plot)[:, 1]
             
                 # Plot
                 fig, ax = plt.subplots()
