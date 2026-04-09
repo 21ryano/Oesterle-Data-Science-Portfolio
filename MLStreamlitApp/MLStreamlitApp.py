@@ -331,15 +331,6 @@ if df is not None and target and features and target not in features:
         df[features], df[target], test_size=test_size, random_state=42
     )
 
-    from sklearn.preprocessing import StandardScaler
-
-    scale = st.checkbox("Apply Feature Scaling")
-
-    if scale:
-        scaler = StandardScaler()
-        X_train = scaler.fit_transform(X_train)
-        X_test = scaler.transform(X_test)
-
         if st.button("Train Model"):
             model.fit(X_train, y_train)
         
