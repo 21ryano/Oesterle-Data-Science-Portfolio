@@ -464,7 +464,7 @@ if df is not None and target and features and target not in features:
             st.text(classification_report(y_test, y_pred))
 
             if len(np.unique(y_test)) == 2:
-                y_probs = main_model.predict_proba(X_test)[:, 1]
+                y_probs = model.predict_proba(X_test)[:, 1]
                 fpr, tpr, _ = roc_curve(y_test, y_probs)
                 roc_auc = roc_auc_score(y_test, y_probs)
                 fig2, ax2 = plt.subplots()
