@@ -191,6 +191,8 @@ elif sample_data == "Penguins":
     df = sns.load_dataset("penguins")
 
 
+y_pred = st.session_state.y_pred
+model = st.session_state.model
 
 # Data Preview/Cleaning
 if df is not None:
