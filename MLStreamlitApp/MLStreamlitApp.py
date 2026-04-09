@@ -322,7 +322,9 @@ if target and features and target not in features:
         if model_name == "Linear Regression":
             model = LinearRegression()
 
-
+    if not is_classification and model_name in ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors"]:
+        st.warning("Target is continuous; switching to Linear Regression automatically.")
+        model = LinearRegression()
 
 
 # Model Training and Evaluation (automatic)
