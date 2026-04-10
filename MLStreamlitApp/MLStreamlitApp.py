@@ -141,10 +141,6 @@ st.markdown(
 )
 
 
-df = None
-target = None
-features = None 
-
 
 # Dataset Selection: In this section, the user can either upload their own dataset or choose a built-in sample dataset. This provides flexibility and allows users to experiment with different data.
 
