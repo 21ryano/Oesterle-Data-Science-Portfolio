@@ -1,6 +1,6 @@
 # Machine Learning Streamlit App
 
-This is an interactive Streamlit app that lets users conduct supervised machine learning. Users can upload datasets, select their model and features, and then evaluate the data using provided visuals.
+This is an interactive Streamlit app that lets users conduct supervised machine learning. Users can upload datasets, select their model and features, and then evaluate the data using provided visuals. Goal is to allow users to experiment with Machine Learning and data analysis on an easy to use application. 
 
 **How To Use**
 - Click the Link [**HERE**](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/) to deploy the App.
