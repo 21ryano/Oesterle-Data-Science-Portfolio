@@ -13,4 +13,4 @@ This project is a simple Streamlit-based data visualization tool built for my 20
 
 **Visualizations**
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/EDA/Basic_Streamlit_App/Screenshots/Screenshot%202026-05-01%20162027.png)
-![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/Models/MLStreamlitApp/Screenshots/Screenshot%202026-04-06%20224653.png)
+![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/EDA/Basic_Streamlit_App/Screenshots/Screenshot%202026-05-01%20162147.png)
