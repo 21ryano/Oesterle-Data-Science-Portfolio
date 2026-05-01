@@ -3,8 +3,8 @@
 This is an interactive Streamlit app that lets users conduct *supervised machine learning*. Users can upload datasets, select their model and features, and then evaluate the data using provided visuals. Goal is to allow users to experiment with Machine Learning and data analysis on an easy to use application. 
 
 **How To Use**
-- Click the Link [**HERE**](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/) to deploy the App.
-     - Link URL: [https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/](https://oesterle-data-science-portfolio-epbjnntr5lm9bjpgqvzh6j.streamlit.app/)
+- Click the Link [**HERE**](https://oesterle-data-science-portfolio-4jubtiuyfderbagzgh5rbt.streamlit.app/) to deploy the App.
+     - Link URL: [https://oesterle-data-science-portfolio-4jubtiuyfderbagzgh5rbt.streamlit.app/](https://oesterle-data-science-portfolio-4jubtiuyfderbagzgh5rbt.streamlit.app/)
  
 - If running the app locally:
    - *Copy the Repository*: **git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git**
