@@ -9,7 +9,7 @@ This is an interactive Streamlit app that lets users conduct *supervised machine
 - If running the app locally:
    - *Copy the Repository*: **git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git**
    - *Navigate to the App Folder*: **cd MLStreamlitApp**
-   - *Install Required Libraries*: **pip install pandas matplotlib seaborn scikit-learn streamlit** (also located in the [requirements.txt](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLStreamlitApp/requirements.txt))
+   - *Install Required Libraries*: **pip install Pandas, Matplotlib, Seaborn, Scikit-learn, Streamlit** (also located in the [requirements.txt](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLStreamlitApp/requirements.txt))
    - *Run the App*: **streamlit run app.py**
 
 **APP FEATURES**
