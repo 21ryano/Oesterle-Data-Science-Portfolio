@@ -15,7 +15,7 @@ This portfolio showcases my work from the Introduction to Data Science course. F
 - **2008 Olympics EDA Project** – Cleaning and analyzing a messy dataset, now fully tidy. [**Try it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
     - *At a Glance:* 
 - **Basketball Statistics Streamlit App** – Explore NBA player statistics from 1996 onward. [**Check it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App)
-    - *At a Glance:* 
+    - *At a Glance:* An interactive Streamlit dashboard that explores NBA player statistics from 1996–2023 through filters, visualizations, and comparative analysis. It demonstrates basic exploratory data analysis and data visualization skills using Python.
 
 
 
