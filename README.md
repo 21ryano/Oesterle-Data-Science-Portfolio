@@ -23,4 +23,8 @@ This portfolio showcases my work from the Introduction to Data Science course. F
 - Data visualization (Matplotlib, Seaborn)  
 - Machine learning (Scikit-learn)  
 - Unsupervised learning (clustering, dimensionality reduction)  
-- Interactive applications (Streamlit)  
+- Interactive applications (Streamlit)
+
+
+
+https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/Miscellaneous/Screenshot%202026-05-01%20195610.png
