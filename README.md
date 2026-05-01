@@ -24,3 +24,4 @@ Creating this app helped me better understand how model choice and hyperparamete
 **Previous Projects**
 - **Basketball Statistics Streamlit App** – Explore NBA player statistics from 1996 onward. [**Check it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App)
 - **2008 Olympics EDA Project** – Cleaning and analyzing a messy dataset, now fully tidy. [**Explore it here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
+- **Machine Learning Streamlit App** - Upload your own dataset and train different ML models.[**Try it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLStreamlitApp)
