@@ -35,12 +35,10 @@ This project takes a messy dataset of 2008 Olympics medalists and transforms it 
 - Clean data enables better insights and storytelling
 
 
-📚 *References*
-
-📄 Hadley Wickham, Tidy Data Paper (2014):
+**References**
+- Hadley Wickham, Tidy Data Paper (2014):
 https://vita.had.co.nz/papers/tidy-data.pdf
-
-🧾 Tidy Data Cheat Sheet (RStudio):
+- Tidy Data Cheat Sheet (RStudio):
 https://rstudio.com/resources/cheatsheets/
 
 
