@@ -9,24 +9,23 @@ This project takes a messy dataset of 2008 Olympics medalists and transforms it 
 
 **Dataset Description**
 - The dataset (olympics_08_medalists.csv) contains information about athletes who won medals in the 2008 Olympics.
+- *Original Data Issues:*
+     - Columns combined multiple variables (e.g., gender + sport)
+     - Large number of missing values
+     - Inconsistent formatting
+- *How I Fixed This:*
+    -  Used pd.melt() to reshape the dataset
+    -  Split combined columns into gender and sport
+    -  Removed null values
+    -  Cleaned text formatting (spacing, capitalization, symbols)
 
-*Original Data Issues:*
-- Columns combined multiple variables (e.g., gender + sport)
-- Large number of missing values
-- Inconsistent formatting
+- ***Final Result:***
 
-*How I Fixed This:*
-- Used pd.melt() to reshape the dataset
-- Split combined columns into gender and sport
-- Removed null values
-- Cleaned text formatting (spacing, capitalization, symbols)
-
-***Final Result:***
-- A tidy dataset with the following columns:
-     - Medalist_Name
-     - Medal
-     - Gender
-     - Sport
+   - A tidy dataset with the following columns:
+       - Medalist_Name
+       - Medal
+       - Gender
+       - Sport
 - **Each variable is its own column, each observation its own row, and each observation unit its own table**
 
 **Key Takeaways**
