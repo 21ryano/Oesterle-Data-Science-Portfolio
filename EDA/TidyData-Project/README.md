@@ -4,7 +4,7 @@ This project takes a messy dataset of 2008 Olympics medalists and transforms it 
 
 **How to Use**
 1. Copy the Repository: git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git
-2. Install Pandas, MatPlotLib, and Seaborn. This is intended for a Jupyter Notebook.
+2. Install **Pandas, MatPlotLib, and Seaborn**. This is intended for a Jupyter Notebook.
 3. Run the Notebook
 
 **Project Description**
