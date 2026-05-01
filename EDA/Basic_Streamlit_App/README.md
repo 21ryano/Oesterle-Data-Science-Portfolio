@@ -5,7 +5,7 @@ This project is a simple Streamlit-based data visualization tool built for my 20
 **How to Use**
 1. Clone the Repository: git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git
 2. pip install **Pandas, Matplotlib, Seaborn, and Streamlit**.
-3. **streamlit run** [**PortfolioUpdate1.py**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/EDA/Basic_Streamlit_App/PortfolioUpdate1.py). 
+3. **Streamlit run** [**PortfolioUpdate1.py**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/EDA/Basic_Streamlit_App/PortfolioUpdate1.py). 
 
 **Project Description**
 
