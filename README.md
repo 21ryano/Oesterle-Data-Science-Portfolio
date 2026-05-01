@@ -10,7 +10,7 @@ This portfolio showcases my work from the Introduction to Data Science course. F
 ### Featured Projects
 - **Unsupervised Machine Learning Streamlit App** - Upload data, choose parameters, and explore the model. [**Test it out Here!**]
     - *At a Glance:* 
-- **Supervised Machine Learning Streamlit App** - Upload your own dataset and train different ML models. [**Explore it here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+- **Supervised Machine Learning Streamlit App** - Upload your own dataset and train different ML models. [**Explore it here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models/MLStreamlitApp)
     - *At a Glance:* An interactive Streamlit application for supervised machine learning that allows users to upload datasets, select models, tune hyperparameters, and evaluate performance. It provides real-time visualizations and metrics to help users explore and compare different machine learning approaches.
 - **2008 Olympics EDA Project** – Cleaning and analyzing a messy dataset, now fully tidy. [**Try it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
     - *At a Glance:* A data cleaning and transformation project that restructures a messy 2008 Olympic medal dataset into a tidy format for analysis. It applies tidy data principles to enable clearer exploratory data analysis and visualization of medal distribution patterns.
