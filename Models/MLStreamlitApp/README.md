@@ -13,11 +13,11 @@ This is an interactive Streamlit app that lets users conduct *supervised machine
    - *Run the App*: **streamlit run app.py**
 
 **APP FEATURES**
-- Use a ***Sample Dataset*** or ***Upload your own***!
-- Create a Model (***Logistic Regression***, ***Decision Tree***, ***KNN***, and ***Linear Regression***)
-- Utilize ***Hyperparameters*** (***C*** [Logistic Regression], ***Max depth*** [Decision Tree], K [***KNN***])
-- Many Methods of Evaluation (***Accuracy***, ***Confusion Matrix***, ***ROC/AUC***, ***MSE***, ***R²***, ***Residual Plots***)
-- ***Feature/target selection***, ***Automatic classification***, ***Feature scaling option***, ***Train/test split control***!
+- **Upload your own Dataset** or **Use a Sample Dataset**!
+- Create a Model (**Logistic Regression**, **Decision Tree**, **KNN**, and **Linear Regression**)
+- Utilize **Hyperparameters** (***C*** [Logistic Regression], ***Max depth*** [Decision Tree], ***K*** [*KNN*])
+- Many Methods of Evaluation (**Accuracy**, **Confusion Matrix**, **ROC/AUC**, **MSE**, **R²**, **Residual Plots**)
+- Feature/target selection, Automatic classification, Feature scaling option, Train/test split control!
 
 
 **References**
