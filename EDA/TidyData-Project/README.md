@@ -3,7 +3,7 @@
 This project takes a messy dataset of 2008 Olympics medalists and transforms it into a clean, structured format using tidy data principles. The goal was to Reshape the dataset, Clean and standardize the data, Perform exploratory data analysis (EDA), Visualize key insights about Olympic medal distribution. 
 
 **How to Use**
-1. Copy the Repository
+1. Copy the Repository: **git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git**
 2. Install Pandas, MatPlotLib, and Seaborn. This is intended for a Jupyter Notebook.
 3. Run the Notebook
 
