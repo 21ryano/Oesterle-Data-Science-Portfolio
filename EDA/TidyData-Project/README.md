@@ -7,8 +7,7 @@ This project takes a messy dataset of 2008 Olympics medalists and transforms it 
 2. Install Pandas, MatPlotLib, and Seaborn. This is intended for a Jupyter Notebook.
 3. Run the Notebook
 
-**Dataset Description**
-- The dataset (olympics_08_medalists.csv) contains information about athletes who won medals in the 2008 Olympics.
+**Project Description**
 - *Original Data Issues:*
      - Columns combined multiple variables (e.g., gender + sport)
      - Large number of missing values
