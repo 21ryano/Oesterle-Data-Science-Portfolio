@@ -43,6 +43,6 @@ https://rstudio.com/resources/cheatsheets/
 
 
 
-📈 **Visual Examples**
+**Visual Examples**
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/TidyData-Project/Screenshots/Screenshot%202026-03-19%20101020.png)
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/TidyData-Project/Screenshots/Screenshot%202026-03-19%20101050.png)
