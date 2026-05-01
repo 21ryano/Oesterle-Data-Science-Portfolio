@@ -1,57 +1,35 @@
-🧹 **Tidy Data Project – 2008 Olympic Medalists**
+ # Tidy Data Project – 2008 Olympic Medalists
 
-📊 *Project Overview*
+This project takes a messy dataset of 2008 Olympics medalists and transforms it into a clean, structured format using tidy data principles. The goal was to Reshape the dataset, Clean and standardize the data, Perform exploratory data analysis (EDA), Visualize key insights about Olympic medal distribution. 
 
-This project transforms a messy dataset into a clean, structured format using tidy data principles. The dataset contains medalists from the 2008 Olympics, but its original format is difficult to analyze due to combined variables and missing values.
-
-
-*The goal of this project is to:*
-- Reshape the dataset into a tidy format
-- Clean and standardize the data
-- Perform exploratory data analysis (EDA)
-- Visualize key insights about Olympic medal distribution
-
-*📌 What is Tidy Data?*
-- Tidy data is a standardized way of organizing datasets so they are easier to analyze. The three core principles are:
-- Each variable has its own column
-- Each observation has its own row
-- Each type of observational unit forms its own table
-
-Applying these principles makes data easier to manipulate, visualize, and model.
-
-
-*⚙️ Instructions (How to Run the Project)*
+**How to Use**
 1. Copy the Repository
 2. Install Pandas, MatPlotLib, and Seaborn. This is intended for a Jupyter Notebook.
 3. Run the Notebook
 
+**Dataset Description**
+- The dataset (olympics_08_medalists.csv) contains information about athletes who won medals in the 2008 Olympics.
 
-🗂️**Dataset Description**
-
-The dataset (olympics_08_medalists.csv) contains information about athletes who won medals in the 2008 Olympics.
-
-🔍 *Original Data Issues:*
+*Original Data Issues:*
 - Columns combined multiple variables (e.g., gender + sport)
 - Large number of missing values
 - Inconsistent formatting
 
-
-
-🛠️ **How I Fixed This:
+*How I Fixed This:*
 - Used pd.melt() to reshape the dataset
 - Split combined columns into gender and sport
 - Removed null values
 - Cleaned text formatting (spacing, capitalization, symbols)
 
-✅ **Final Result:**
-A tidy dataset with the following columns:
-- medalist_name
-- medal
-- gender
-- sport
+***Final Result:***
+- A tidy dataset with the following columns:
+     - Medalist_Name
+     - Medal
+     - Gender
+     - Sport
+- **Each variable is its own column, each observation its own row, and each observation unit its own table**
 
-
-💡 **Key Takeaways**
+**Key Takeaways**
 - Real-world data is often messy and requires significant cleaning
 - Tidy data principles simplify analysis and visualization
 - Python tools like pandas make reshaping data efficient
