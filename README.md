@@ -8,7 +8,7 @@ This portfolio showcases my work from the Introduction to Data Science course. F
 - [Miscellaneous](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Miscellaneous) - Other projects and experiments.
     
 ### Featured Projects
-- **Unsupervised Machine Learning Streamlit App** - Upload data, choose parameters, and explore the model. [**Test it out Here!**]
+- **Unsupervised Machine Learning Streamlit App** - Upload data, choose parameters, and explore the model. [**Test it out Here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLUnsupervisedApp)
     - *At a Glance:* 
 - **Supervised Machine Learning Streamlit App** - Upload your own dataset and train different ML models. [**Explore it here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models/MLStreamlitApp)
     - *At a Glance:* An interactive Streamlit application for supervised machine learning that allows users to upload datasets, select models, tune hyperparameters, and evaluate performance. It provides real-time visualizations and metrics to help users explore and compare different machine learning approaches.
