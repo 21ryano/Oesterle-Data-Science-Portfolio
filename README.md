@@ -18,7 +18,7 @@ This portfolio showcases my work from the Introduction to Data Science course. F
     - *At a Glance:* An interactive Streamlit dashboard that explores NBA player statistics from 1996–2023 through filters, visualizations, and comparative analysis. It demonstrates basic exploratory data analysis and data visualization skills using Python.
 
 
-**Skills Demonstrated**
+**Skills Demonstrated:**
 - Data cleaning and transformation (Pandas) 
 - Data visualization (Matplotlib, Seaborn)  
 - Machine learning (Scikit-learn)  
