@@ -19,7 +19,7 @@ This is an interactive Streamlit app that allows users to explore **unsupervised
 - Automatic preprocessing: Handles missing values, Uses only numeric features, and Optional feature scaling
 
 
-### Key Learning Outcomes
+### Key Learning Points
 - Understanding how clustering algorithms group similar data points
 - Exploring how different values of K affect clustering results
 - Interpreting dendrograms for hierarchical clustering
