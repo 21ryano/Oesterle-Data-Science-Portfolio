@@ -13,16 +13,16 @@ This is an interactive Streamlit app that allows users to explore **unsupervised
 
 
 ### APP FEATURES
-- Upload your own dataset or choose a built-in sample dataset (Iris, Wine, Breast Cancer)
-- Choose between unsupervised learning methods: K-Means Clustering, Hierarchical Clustering, and Principal Component Analysis (PCA)
-- Hyperparameter tuning: Number of clusters (k), Linkage method (ward, complete, average), and Number of PCA components
-- Model evaluation tools: Elbow Method (WCSS), Silhouette Score, Dendrogram visualization, PCA scatterplots, and Explained variance (scree plot)
+- **Upload your own dataset or choose a built-in sample dataset** (Iris, Wine, Breast Cancer)
+- Choose between unsupervised learning methods: **K-Means Clustering, Hierarchical Clustering, and Principal Component Analysis (PCA)**
+- **Hyperparameter tuning:** *Number of clusters (k)*, *Linkage method (ward, complete, average)*, and *Number of PCA components*
+- **Model evaluation tools:** *Elbow Method (WCSS)*, *Silhouette Score*, *Dendrogram visualization*, *PCA scatterplots*, and *Explained variance (scree plot)*
 - Automatic preprocessing: Handles missing values, Uses only numeric features, and Optional feature scaling
 
 
 ### Key Learning Outcomes
 - Understanding how clustering algorithms group similar data points
-- Exploring how different values of k affect clustering results
+- Exploring how different values of K affect clustering results
 - Interpreting dendrograms for hierarchical clustering
 - Using PCA for dimensionality reduction and visualization
 - Evaluating unsupervised learning with silhouette scores and variance explained
