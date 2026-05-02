@@ -1,61 +1,31 @@
 # Unsupervised Machine Learning Streamlit App
-This is an interactive Streamlit app that allows users to explore **unsupervised machine learning techniques** on any numerical dataset. Users can upload their own data or select a built-in sample dataset, then apply clustering and dimensionality reduction methods to uncover hidden patterns in the data.
-
-The app focuses on three core unsupervised learning techniques: **K-Means Clustering**, **Hierarchical Clustering**, and **Principal Component Analysis (PCA)**. It provides interactive parameter tuning and real-time visual outputs such as elbow plots, dendrograms, silhouette scores, and PCA scatterplots.
-
-The goal of this project is to make unsupervised learning intuitive, visual, and exploratory for users of all technical backgrounds.
-
-
+This is an interactive Streamlit app that allows users to explore **unsupervised machine learning techniques** on any numerical dataset. Users can upload their own data or select a built-in sample dataset, then apply clustering and dimensionality reduction methods to uncover hidden patterns in the data. The goal of this project is to make an easy-to-use unsupervised learning application with easy to interpret visualizations.
 
 ## How To Use
 
 - Launch the app locally or deploy it using Streamlit Community Cloud.
 
 ### If running locally:
-- Clone the repository:  
-  **git clone https://github.com/your-username/your-repo-name.git**
-- Navigate to the app folder:  
-  **cd MLStreamlitApp**
-- Install required libraries:  
-  **pip install pandas numpy matplotlib seaborn scikit-learn streamlit scipy**
-- Run the app:  
-  **streamlit run app.py**
-
-
+- Clone the repository: **git clone https://github.com/your-username/your-repo-name.git**
+- Navigate to the app folder: **cd MLStreamlitApp**
+- Install required libraries: **pip install pandas numpy matplotlib seaborn scikit-learn streamlit scipy**
+- Run the app: **streamlit run app.py**
 
 ## APP FEATURES
+- Upload your own dataset or choose a built-in sample dataset (Iris, Wine, Breast Cancer)
+- Choose between unsupervised learning methods: K-Means Clustering, Hierarchical Clustering, and Principal Component Analysis (PCA)
+- Hyperparameter tuning: Number of clusters (k), Linkage method (ward, complete, average), and Number of PCA components
+- Model evaluation tools: Elbow Method (WCSS), Silhouette Score, Dendrogram visualization, PCA scatterplots, and Explained variance (scree plot)
+- Automatic preprocessing: Handles missing values, Uses only numeric features, and Optional feature scaling
 
-- 📁 Upload your own dataset or choose a built-in sample dataset (Iris, Wine, Breast Cancer)
-- ⚙️ Choose between unsupervised learning methods:
-  - K-Means Clustering
-  - Hierarchical Clustering
-  - Principal Component Analysis (PCA)
-- 🎛️ Hyperparameter tuning:
-  - Number of clusters (k)
-  - Linkage method (ward, complete, average)
-  - Number of PCA components
-- 📊 Model evaluation tools:
-  - Elbow Method (WCSS)
-  - Silhouette Score
-  - Dendrogram visualization
-  - PCA scatterplots
-  - Explained variance (scree plot)
-- 🔍 Automatic preprocessing:
-  - Handles missing values
-  - Uses only numeric features
-  - Optional feature scaling
-
----
 
 ## Key Learning Outcomes
-
 - Understanding how clustering algorithms group similar data points
 - Exploring how different values of k affect clustering results
 - Interpreting dendrograms for hierarchical clustering
 - Using PCA for dimensionality reduction and visualization
 - Evaluating unsupervised learning with silhouette scores and variance explained
 
----
 
 ## References
 
