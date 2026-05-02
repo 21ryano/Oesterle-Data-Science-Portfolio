@@ -6,9 +6,9 @@ This is an interactive Streamlit app that allows users to explore **unsupervised
 - Launch the app locally or deploy it using Streamlit Community Cloud.
 
 ### If running locally:
-- Clone the repository: **git clone https://github.com/your-username/your-repo-name.git**
+- Clone the repository: **git clone https://github.com/21ryano/Oesterle-Data-Science-Portfolio.git**
 - Navigate to the app folder: **cd MLStreamlitApp**
-- Install required libraries: **pip install pandas numpy matplotlib seaborn scikit-learn streamlit scipy**
+- Install required libraries: **pip install Pandas, Numpy, Matplotlib, Seaborn, Scikit-Learn, Scipy, and Streamlit**
 - Run the app: **streamlit run app.py**
 
 
