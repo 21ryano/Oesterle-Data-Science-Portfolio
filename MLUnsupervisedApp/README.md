@@ -12,7 +12,6 @@ This is an interactive Streamlit app that allows users to explore **unsupervised
 - Run the app: **streamlit run app.py**
 
 
-
 ### APP FEATURES
 - Upload your own dataset or choose a built-in sample dataset (Iris, Wine, Breast Cancer)
 - Choose between unsupervised learning methods: K-Means Clustering, Hierarchical Clustering, and Principal Component Analysis (PCA)
@@ -29,14 +28,14 @@ This is an interactive Streamlit app that allows users to explore **unsupervised
 - Evaluating unsupervised learning with silhouette scores and variance explained
 
 
-**References**
+### References
 
 - Scikit-learn Documentation: https://scikit-learn.org/stable/
 - Streamlit Documentation: https://docs.streamlit.io/
 - SciPy Hierarchical Clustering: https://docs.scipy.org/doc/scipy/reference/cluster.hierarchy.html
 
 
-**Visual Examples**
+### Visual Examples
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLUnsupervisedApp/Screenshots/Screenshot%202026-05-02%20130841.png)
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLUnsupervisedApp/Screenshots/8c553f8095300b28bb1e0ca251f245cba5e528656ed3687100768490.png)
 ![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/MLUnsupervisedApp/Screenshots/Screenshot%202026-05-02%20130441.png)
