@@ -15,8 +15,8 @@ This is an interactive Streamlit app that allows users to explore **unsupervised
 ### APP FEATURES
 - **Upload your own dataset or choose a built-in sample dataset** (Iris, Wine, Breast Cancer)
 - Choose between unsupervised learning methods: **K-Means Clustering, Hierarchical Clustering, and Principal Component Analysis (PCA)**
-- **Hyperparameter tuning:** *Number of clusters (k)*, *Linkage method (ward, complete, average)*, and *Number of PCA components*
-- **Model evaluation tools:** *Elbow Method (WCSS)*, *Silhouette Score*, *Dendrogram visualization*, *PCA scatterplots*, and *Explained variance (scree plot)*
+- **Hyperparameter tuning:** Number of clusters (k), Linkage method (ward, complete, average), and Number of PCA components
+- **Model evaluation tools:** Elbow Method (WCSS), Silhouette Score, Dendrogram visualization, PCA scatterplots, and Explained variance (scree plot)
 - Automatic preprocessing: Handles missing values, Uses only numeric features, and Optional feature scaling
 
 
