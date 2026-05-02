@@ -1,7 +1,7 @@
 # Unsupervised Machine Learning Streamlit App
 This is an interactive Streamlit app that allows users to explore **unsupervised machine learning techniques** on any numerical dataset. Users can upload their own data or select a built-in sample dataset, then apply clustering and dimensionality reduction methods to uncover hidden patterns in the data. The goal of this project is to make an easy-to-use unsupervised learning application with easy to interpret visualizations.
 
- **How To Use**
+ ### How To Use
 - Click the Link [**HERE**](https://oesterle-data-science-portfolio-4jubtiuyfderbagzgh5rbt.streamlit.app/) to deploy the App.
      - Link URL: [https://oesterle-data-science-portfolio-4jubtiuyfderbagzgh5rbt.streamlit.app/](https://oesterle-data-science-portfolio-4jubtiuyfderbagzgh5rbt.streamlit.app/)
 - If running locally:
