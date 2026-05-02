@@ -1,1 +1,1 @@
-**This will house All EDA Projects!**
+**This will house all my EDA projects!**
