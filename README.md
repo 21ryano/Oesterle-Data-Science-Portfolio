@@ -1,23 +1,33 @@
 # Spring 2026 Data Science Portfolio
+This portfolio showcases my work from the Introduction to Data Science course. Focusing on data cleaning, visualization, and machine learning, these projects emphasize analysis, model building, and interactivity.
 
-- Here you will find all the work I completed for my Introduction to Data Science course (Spring 2026)
-   - Explore each of the Folders to see what I've been up to! 📈🧑‍💻⚙️
+**Projects are filed in the following manner:**
+- [Experimental Data Analysis (EDA)](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA) - Cleaning, exploring, and summarizing datasets.
+- [Visualizations](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Visualizations) - Charts, plots, and data storytelling.
+- [Models](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models) - Machine learning experiments and model evaluation.
+- [Miscellaneous](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Miscellaneous) - Other projects and experiments.
+    
+### My Latest Project: [**Unsupervised Machine Learning Streamlit App**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLUnsupervisedApp)
+- Allows users to upload datasets and explore patterns and relationships using unsupervised machine learning techniques in an interactive app.
+- Features adjustable parameters, multiple methods, and visulizations that help users interpret results and understand how the model is working.
+- Builds on my understanding of machine learning by moving past labeled data approaches to exploring patterns in unlabeled data and analyzing how different methods and parameter choices influence results.
+- Strengthens my portfolio by expanding into unsupervised learning and providing another example of my ability to build and deploy interactive applications using Streamlit.
+
+ ### Featured Projects: 
+- 📈 **Supervised Machine Learning App** - Upload your own dataset and train different ML models. [**Explore it here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models/MLStreamlitApp)
+    - *At a Glance:* An interactive Streamlit application for supervised machine learning that allows users to upload datasets, select models, tune hyperparameters, and evaluate performance. It provides real-time visualizations and metrics to help users explore and compare different machine learning approaches.
+- 🥇 **2008 Olympics EDA Project** – Cleaning and analyzing a messy dataset, now fully tidy. [**Try it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
+    - *At a Glance:* A data cleaning and transformation project that restructures a messy 2008 Olympic medal dataset into a tidy format for analysis. It applies tidy data principles to enable clearer exploratory data analysis and visualization of medal distribution patterns.
+- 🏀 **Basketball Statistics Streamlit App** – Explore NBA player statistics from 1996 onward. [**Check it out here!**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App)
+    - *At a Glance:* An interactive Streamlit dashboard that explores NBA player statistics from 1996–2023 through filters, visualizations, and comparative analysis. It demonstrates basic exploratory data analysis and data visualization skills using Python.
 
 
-- Work will be filed in the following manner:
-    - [Experimental Data Analysis (EDA)](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA)
-    - [Visualizations](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Visualizations)
-    - [Models](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Models)
-    - [Miscellaneous](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/Miscellaneous)
+**Skills Demonstrated:**
+- Data cleaning and transformation (Pandas) 
+- Data visualization (Matplotlib, Seaborn)  
+- Machine learning (Scikit-learn)  
+- Unsupervised learning (clustering, dimensionality reduction)  
+- Interactive applications (Streamlit)
 
 
-
-
-[**Here**](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/MLStreamlitApp) **is my most recent project!** It's a *Machine Learning Streamlit App* where you can upload datasets, train classification or regression models, and visualize results with metrics and plots. It supports Logistic Regression, Decision Trees, KNN, and Linear Regression. 
-
-This is my first ***Machine Learning Modeling*** application and only my second ***Streamlit App***1
-
-
-**NOTE**: I have two previous projects that I think you should also take a look at!
-- First, a streamlit basketball statistics app that can tell you statistics about any player since 1996! Check it out [HERE!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/Basic_Streamlit_App).
-- Second, an EDA of a very untidy (but now super tidy) 2008 Olympics dataset. Check that out [Here!](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/tree/main/EDA/TidyData-Project)
+![alt text](https://github.com/21ryano/Oesterle-Data-Science-Portfolio/blob/main/Miscellaneous/Screenshot%202026-05-01%20200333.png)
